@@ -17,7 +17,6 @@ abstract class AbstractDAO{
 
         $fields = $namespace::getSchema();
         $sql = "CREATE TABLE IF NOT EXISTS $this->className ($fields)";
-        echo "$sql";
         $this->app[conexion]->prepare($sql)->execute();
     }
 

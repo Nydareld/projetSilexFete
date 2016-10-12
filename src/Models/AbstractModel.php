@@ -2,7 +2,9 @@
 
 namespace TheoGuerin\Models;
 
-class AbstractModel{
+use JsonSerializable;
+
+class AbstractModel implements JsonSerializable {
 
     protected $id;
 
@@ -14,6 +16,14 @@ class AbstractModel{
         return array("id");
     }
 
+    public function JsonSerialize(){
+        $res = array('id' => $this->getId() );
+        foreach ($this->getFields() as $field) {
+            $function = "get".ucfirst($field);
+            $res[$field] = $this->$function();
+        }
+        return $res;
+    }
 
     /**
      * Get the value of Id

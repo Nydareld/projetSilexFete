@@ -39,6 +39,7 @@ abstract class AbstractDAO{
             }
             array_push($res,$object);
         }
+        return $res;
     }
 
 }

@@ -5,4 +5,4 @@ $app->get('/hello/{name}',"TheoGuerin\Controllers\HomeController::helloAction");
 
 $app->get('/createBase',"TheoGuerin\Controllers\DataBaseController::createBaseAction");
 
-$app->get('/persones',"TheoGuerin\Controllers\PersonneController::personesAction");
+$app->get('api/persones',"TheoGuerin\Controllers\API\PersonneController::getAllAction");

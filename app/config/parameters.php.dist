@@ -1,0 +1,8 @@
+<?php
+
+$parameters = array(
+    'DB_USER' => "myWonderfullUser",
+    'DB_PASSWD' => "myWonderfullPassword",
+    'DB_SERVER' => "myWonderfullServer",
+    'DB_BASE' => "myWonderfullBase"
+);

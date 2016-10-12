@@ -2,7 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
-require_once __DIR__.'/config.php';
+require_once __DIR__.'/config/config.php';
 
 $app["debug"] = true;
 

@@ -33,12 +33,10 @@ abstract class AbstractDAO{
 
         foreach ($rows as $row) {
             $object = new $namespace();
-            var_dump($object);
             foreach ($fields as $field) {
                 $function = "set".ucfirst($field);
                 $object->$function($row[$field]);
             }
-            var_dump($object);
             array_push($res,$object);
         }
     }

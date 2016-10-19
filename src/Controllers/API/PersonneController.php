@@ -10,4 +10,10 @@ class PersonneController{
         $personnes = $app["dao.Personne"]->getAll();
         return $app->json($personnes);
     }
+
+    public function getOneByIdAction(Application $app,$id){
+        $personne = $app["dao.Personne"]->getOneById($id);
+        return $app->json($personne);
+    }
+
 }

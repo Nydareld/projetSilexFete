@@ -17,7 +17,7 @@ abstract class AbstractDAO{
 
         $fields = $namespace::getSchema();
         $sql = "CREATE TABLE IF NOT EXISTS $this->className ($fields)";
-        $this->app[conexion]->prepare($sql)->execute();
+        $this->app['conexion']->prepare($sql)->execute();
     }
 
     public function getAll(){
@@ -27,7 +27,7 @@ abstract class AbstractDAO{
         $fields = $namespace::getFields();
 
         $sql = "SELECT * fROM $class";
-        $rows = $this->app[conexion]->query($sql);
+        $rows = $this->app['conexion']->query($sql);
 
         $res = array();
 
@@ -40,6 +40,28 @@ abstract class AbstractDAO{
             array_push($res,$object);
         }
         return $res;
+    }
+
+    public function getOneById($id){
+
+        $class = $this->className;
+        $namespace = "TheoGuerin\Models\\$class";
+        $fields = $namespace::getFields();
+
+        $sql = "SELECT * fROM $class where id = ?";
+        $statment = $this->app['conexion']->prepare($sql);
+        $statment->execute([$id]);
+
+        $row = $statment->fetch();
+
+        $object = new $namespace();
+
+        foreach ($fields as $field) {
+            $function = "set".ucfirst($field);
+            $object->$function($row[$field]);
+        }
+
+        return $object;
     }
 
 }

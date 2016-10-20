@@ -29,4 +29,17 @@ class PersonneController{
         return $app->json($personne);
     }
 
+    public function updateAction(Request $request, Application $app, $id){
+        $personne = $app["dao.Personne"]->getOneById($id);
+        foreach (Personne::getFields() as $field){
+            if ($request->request->get($field) !== null ) {
+                $function = "set".ucfirst($field);
+                $personne->$function($request->request->get($field));
+            }
+        }
+        $personne->setId($id);
+        $personne = $app["dao.Personne"]->updateObject($personne,$id);
+        return $app->json($personne);
+    }
+
 }

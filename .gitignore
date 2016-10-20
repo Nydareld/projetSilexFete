@@ -1,2 +1,12 @@
+# Back silex php
 vendor/
 app/config/parameters.php
+
+# Front angular
+node_modules/
+dist/
+bower_components/
+
+# Fronts builds
+public/frontOffice
+public/backOffice

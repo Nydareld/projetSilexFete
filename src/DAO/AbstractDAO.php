@@ -23,8 +23,6 @@ abstract class AbstractDAO{
     public function getAll(){
 
         $class = $this->className;
-        $namespace = "TheoGuerin\Models\\$class";
-        $fields = $namespace::getFields();
 
         $sql = "SELECT * fROM $class";
         $rows = $this->app['conexion']->query($sql);
@@ -32,11 +30,7 @@ abstract class AbstractDAO{
         $res = array();
 
         foreach ($rows as $row) {
-            $object = new $namespace();
-            foreach ($fields as $field) {
-                $function = "set".ucfirst($field);
-                $object->$function($row[$field]);
-            }
+            $object = $this->buildObject($row);
             array_push($res,$object);
         }
         return $res;
@@ -45,14 +39,20 @@ abstract class AbstractDAO{
     public function getOneById($id){
 
         $class = $this->className;
-        $namespace = "TheoGuerin\Models\\$class";
-        $fields = $namespace::getFields();
 
         $sql = "SELECT * fROM $class where id = ?";
         $statment = $this->app['conexion']->prepare($sql);
         $statment->execute([$id]);
 
         $row = $statment->fetch();
+
+        return $this->buildObject($row);
+    }
+
+    public function buildObject($row){
+        $class = $this->className;
+        $namespace = "TheoGuerin\Models\\$class";
+        $fields = $namespace::getFields();
 
         $object = new $namespace();
 

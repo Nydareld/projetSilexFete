@@ -1,0 +1,73 @@
+
+<div ng-controller="AccueilCtrl">
+    <div class="container">
+        <h1>It Works!</h1>
+        <p>
+            Bienvenue sur mon template html bootstrap angular
+            <br />
+            Ce template embarque:
+            <ul>
+                <li>Bootstrap (tout les modules ne sont pas chargés)</li>
+                <li>Jquery (Pour bootstrap. Il est déconséillé de l'utiliser, prefferez angular)</li>
+                <li>AngularJs</li>
+                <li>Angular-bootstrap (pour la compatibilité avec Bootstrap)</li>
+                <li>Angular-route (pour le routing)</li>
+            </ul>
+        </p>
+
+        <h2>Dépendences</h2>
+        <p>
+            <ul>
+                <li>Gulp</li>
+            </ul>
+        </p>
+
+        <h2>Installation</h2>
+        <p>
+            Pour installer le projet lancez :
+            <br />
+            npm install
+            <br />
+            bower install
+        </p>
+
+        <h2>Bootstrap</h2>
+        <p>
+
+            Par défaut le template charge les module bootstrap suivants :
+
+            <ul>
+                <li>variables</li>
+                <li>normalize</li>
+                <li>print</li>
+                <li>glyphicons</li>
+                <li>grid-framework</li>
+                <li>grid</li>
+                <li>button</li>
+            </ul>
+
+            vous pouvez en charger d'autres en les ajoutant dans la config
+        </p>
+
+        <h2>Outils de production</h2>
+        <p>
+            Gulp est installé avec les taches principales suivantes :
+            <dl>
+                <dt>dev</dt>
+                <dd>
+                    Compile les less, concatene les js et déplace les fichiers satiques
+                </dd>
+                <dt>watchDev</dt>
+                <dd>
+                    comme dev mais avec un watch sur les fichiers de l'app
+                </dd>
+
+                <dt>server</dt>
+                <dd>
+                    watchDev assorti d'un server en livereload sur le port 4000 (changeable dans la config)
+                </dd>
+
+            </dl>
+        </p>
+    </div>
+</div>

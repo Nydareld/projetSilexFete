@@ -49,7 +49,7 @@ abstract class AbstractDAO{
         return $this->buildObject($row);
     }
 
-    public function buildObject($row){
+    protected function buildObject($row){
         $class = $this->className;
         $namespace = "TheoGuerin\Models\\$class";
         $fields = $namespace::getFields();
@@ -62,6 +62,30 @@ abstract class AbstractDAO{
         }
 
         return $object;
+    }
+
+    public function saveObject($object){
+        $class = $this->className;
+        $namespace = "TheoGuerin\Models\\$class";
+        $fields = $namespace::getFields();
+
+        $sql = "
+            INSERT INTO $class
+            (".implode(',',$fields).")
+            values (?".str_repeat(",?",count($fields)-1).")
+        ";
+        $statment = $this->app['conexion']->prepare($sql);
+        $fieldsData = array();
+
+        foreach ($fields as $field) {
+            $function = "get".ucfirst($field);
+            array_push($fieldsData,$object->$function());
+        }
+        $statment->execute($fieldsData);
+        $lastId = $this->app['conexion']->lastInsertId();
+
+        return $this->getOneById($lastId);
+
     }
 
 }

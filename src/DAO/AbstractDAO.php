@@ -88,4 +88,28 @@ abstract class AbstractDAO{
 
     }
 
+    public function updateObject($object,$id){
+        $class = $this->className;
+        $namespace = "TheoGuerin\Models\\$class";
+        $fields = $namespace::getFields();
+
+        $sql = "
+            UPDATE $class
+            SET
+            ".implode(' = ?, ',$fields)." = ?
+            where id = ?
+        ";
+        $statment = $this->app['conexion']->prepare($sql);
+        $fieldsData = array();
+
+        foreach ($fields as $field) {
+            $function = "get".ucfirst($field);
+            array_push($fieldsData,$object->$function());
+        }
+        array_push($fieldsData,$id);
+
+        $statment->execute($fieldsData);
+        return $this->getOneById($id);
+
+    }
 }

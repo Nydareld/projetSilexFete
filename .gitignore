@@ -2,11 +2,14 @@
 vendor/
 app/config/parameters.php
 
-# Front angular
-node_modules/
+# Node
 dist/
+node_modules/
+
+# Fronts
 bower_components/
 
-# Fronts builds
-public/frontOffice
-public/backOffice
+# build
+.tmp/
+.sass-cache/
+npm-debug.log

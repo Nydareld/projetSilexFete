@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('./package.json'),
         concat: {
-            js: { //target
+            boConcatJs: { //target
                 separator : ',',
                 src: [
                     './backoffice/src/*.js',
@@ -32,29 +32,29 @@ module.exports = function(grunt) {
                 ],
                 dest: './public/backoffice/dist/scripts/app.js'
             },
-            concatBowerCss: {
+            boVoncatBowerCss: {
                 separator : ';',
                 src : bowerCss,
                 dest: './public/backoffice/dist/style/bower.css'
             },
-            concatBowerJs: {
+            boConcatBowerJs: {
                 separator : ',',
                 src : bowerJs,
                 dest: './public/backoffice/dist/scripts/bower.js'
             }
         },
         uglify: {
-            js: { //target
+            boJs: { //target
                 src: ['./public/backoffice/dist/scripts/app.js'],
                 dest: './public/backoffice/dist/scripts/app.js'
             },
-            bowerJs: {
+            boBowerJs: {
                 src: './public/backoffice/dist/scripts/bower.js',
                 dest: './public/backoffice/dist/scripts/bower.js'
             }
         },
         copy: {
-            main: {
+            boMain: {
                 files: [
                     // includes files within path
                     {
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            prod: {
+            boProd: {
                 files: [
                     {expand: true, cwd: './public/backoffice/dist',src: ['**'], dest: './public/backoffice/buildProd', filter: 'isFile'}
                 ]
@@ -82,12 +82,12 @@ module.exports = function(grunt) {
         },
         less: {
 
-            dev :{
+            boDev :{
                 files: {
                     './public/backoffice/dist/style/all.css': './backoffice/src/all.less'
                 }
             },
-            prod :{
+            boProd :{
                 options: {
                     plugins: [
                         new (require('less-plugin-autoprefix'))({browsers: ["last 3 versions"]}),
@@ -99,19 +99,19 @@ module.exports = function(grunt) {
                 }
             }
         },
-        cssmin:{
+        cssmin :{
             options: {
                 shorthandCompacting: false,
                 roundingPrecision: -1
             },
-            target: {
+            bo : {
                 files: {
                     './public/backoffice/dist/style/bower.css': ['./public/backoffice/dist/style/bower.css']
                 }
             }
         },
         watch : {
-            all : {
+            boAll : {
                 files : [
                     './backoffice/src/**',
                     './backoffice/src/*'
@@ -123,8 +123,8 @@ module.exports = function(grunt) {
             }
         },
         clean: {
-            public: ["./public/backoffice/dist*"],
-            buildProd: ["./public/backoffice/buildProd*"]
+            boPublic: ["./public/backoffice/dist*"],
+            boBuildProd: ["./public/backoffice/buildProd*"]
         },
         ngAnnotate: {
             options: {
@@ -137,7 +137,7 @@ module.exports = function(grunt) {
             }
         },
   		express:{
-  			all:{
+  			boAll:{
   				options:{
   					port:3000,
   					hostname:'localhost',
@@ -158,11 +158,23 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-express');
 
-    //register grunt default task
-    grunt.registerTask('bo-server',['default','express','watch']);
-    grunt.registerTask('bo-default', ['concat', 'copy:main', 'less:dev']);
-    grunt.registerTask('bo-prod', ['clean','concat', 'uglify', 'copy:main', 'less:prod', 'cssmin', 'copy:prod']);
+    grunt.registerTask('bo-clean',['clean:boPublic','clean:boBuildProd']);
+    grunt.registerTask('bo-concat',['concat:boConcatJs','concat:boVoncatBowerCss','concat:boConcatBowerJs']);
+    grunt.registerTask('bo-copy-main',['copy:boMain']);
+    grunt.registerTask('bo-copy-prod',['copy:boProd']);
+    grunt.registerTask('bo-cssmin',['cssmin:bo']); // care
+    grunt.registerTask('bo-express',['express:boAll']);
+    grunt.registerTask('bo-less-prod',['less:boProd']);
+    grunt.registerTask('bo-less-dev',['less:boDev']);
+    grunt.registerTask('bo-uglify',['uglify:boJs',"uglify:boBowerJs"]);
+    grunt.registerTask('bo-watch',['watch:boAll']);
 
+    //register grunt default task
+    grunt.registerTask('bo-server',['bo-default','bo-express','bo-watch']);
+    grunt.registerTask('bo-default', ['bo-concat', 'bo-copy-main', 'bo-less-dev']);
+    grunt.registerTask('bo-prod', ['bo-clean','bo-concat', 'bo-uglify', 'bo-copy-main', 'bo-less-prod', 'bo-cssmin', 'bo-copy-prod']);
+
+    grunt.registerTask('server', ['bo-server']);
     grunt.registerTask('prod', ['bo-prod']);
     grunt.registerTask('default', ['bo-default']);
 

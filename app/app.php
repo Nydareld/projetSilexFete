@@ -14,16 +14,8 @@ $app->before(function(Request $request){
     }
 });
 
-$app["conexion"] = new PDO(
-    "mysql:dbname=".
-    $app["config"]["db"]["BASE"].";host=".
-    $app["config"]["db"]["SERVER"],
-    $app["config"]["db"]["USER"],
-    $app["config"]["db"]["PASSWD"]
-);
-
-$app["dao.Personne"] = function ($app) {
-    return new TheoGuerin\DAO\PersonneDAO($app);
-};
-
-require_once __DIR__.'/routes.php';
+//  === doctrine orm ===
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/Model"), $app['debug']);
+$app['orm.em'] = EntityManager::create($app['db.options'], $config);

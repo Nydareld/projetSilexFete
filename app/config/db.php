@@ -1,8 +1,10 @@
 <?php
 
-$config["db"] = array(
-    'USER' => $parameters["DB_USER"],
-    'PASSWD' => $parameters["DB_PASSWD"],
-    'SERVER' => $parameters["DB_SERVER"],
-    'BASE' => $parameters["DB_BASE"]
-) ;
+$app['db.options'] = array(
+    'driver'   => 'pdo_mysql',
+    'charset'  => 'utf8',
+    'host'     => $parameters["DB_SERVER"],
+    'dbname'   => $parameters["DB_BASE"],
+    'user'     => $parameters["DB_USER"],
+    'password' => $parameters["DB_PASSWD"],
+);

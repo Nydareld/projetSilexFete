@@ -1,5 +1,5 @@
 {
-  "name": "pl-angular-base",
+  "name": "green-teuf-backoffice",
   "dependencies": {
     "angular": "^1.5.8",
     "angular-route": "^1.5.8",
@@ -16,5 +16,5 @@
   "devDependencies": {
   },
   "appPath": "app",
-  "moduleName": "plAngularBase"
+  "moduleName": "greenTeufBackOffice"
 }

@@ -1,5 +1,5 @@
 var app = angular
-  .module('plAngularBase', [
+  .module('greenTeufBackOffice', [
     'ngResource',
     'ngRoute',
     'ngAnimate',

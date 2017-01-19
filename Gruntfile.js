@@ -116,7 +116,7 @@ module.exports = function(grunt) {
                     './backoffice/src/**',
                     './backoffice/src/*'
                 ],
-                tasks: ['concat:js', 'copy:main', 'less:dev'],
+                tasks: ['concat:boConcatJs', 'copy:boMain', 'less:boDev'],
                 options: {
                     livereload: true,
                 }

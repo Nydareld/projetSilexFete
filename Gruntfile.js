@@ -158,6 +158,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-express');
 
+
+    // Unit task for backoffice
     grunt.registerTask('bo-clean',['clean:boPublic','clean:boBuildProd']);
     grunt.registerTask('bo-concat',['concat:boConcatJs','concat:boVoncatBowerCss','concat:boConcatBowerJs']);
     grunt.registerTask('bo-copy-main',['copy:boMain']);
@@ -169,11 +171,12 @@ module.exports = function(grunt) {
     grunt.registerTask('bo-uglify',['uglify:boJs',"uglify:boBowerJs"]);
     grunt.registerTask('bo-watch',['watch:boAll']);
 
-    //register grunt default task
+    // Complex task for backoffice
     grunt.registerTask('bo-server',['bo-default','bo-express','bo-watch']);
     grunt.registerTask('bo-default', ['bo-concat', 'bo-copy-main', 'bo-less-dev']);
     grunt.registerTask('bo-prod', ['bo-clean','bo-concat', 'bo-uglify', 'bo-copy-main', 'bo-less-prod', 'bo-cssmin', 'bo-copy-prod']);
 
+    // Global tasks
     grunt.registerTask('server', ['bo-server']);
     grunt.registerTask('prod', ['bo-prod']);
     grunt.registerTask('default', ['bo-default']);

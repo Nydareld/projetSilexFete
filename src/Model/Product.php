@@ -1,9 +1,13 @@
 <?php
 namespace TheoGuerin\Model;
+// use Doctrine\ORM\Mapping as ORM;
+
+use \Datetime;
+
 /**
  * @Entity @Table(name="product")
  **/
-class Product{
+class Product extends AbstractEntity{
     /**
      * @Id @GeneratedValue @Column(type="integer")
      * @var int
@@ -44,6 +48,18 @@ class Product{
     public function __construct()
     {
         $this->creationDate = new DateTime();
+    }
+
+    public static function getFields(){
+        return array("id", "name", "description", "creationDate", "images", "price" );
+    }
+
+    public static function getEditableFields(){
+        return array("name", "description", "images", "price" );
+    }
+
+    public static function getRequiredFields(){
+        return array("name", "description", "price" );
     }
 
     /**

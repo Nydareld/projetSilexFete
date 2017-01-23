@@ -1,5 +1,5 @@
 <?php
-// Product Get
+// Product Route
 $app->get('/api/product',"TheoGuerin\ApiController\ProductController::getAllProductAction");
 $app->get('/api/product/{id}',"TheoGuerin\ApiController\ProductController::getProductAction");
 $app->post('/api/product',"TheoGuerin\ApiController\ProductController::postProductAction");

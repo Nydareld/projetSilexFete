@@ -208,7 +208,10 @@ module.exports = function(grunt) {
                 ],
                 tasks: ['concat:boConcatJs', 'copy:boMain', 'less:boDev'],
                 options: {
-                    livereload: true,
+                    livereload: {
+                        host: 'localhost',
+                        port: 35728,
+                    }
                 }
             },
             foAll : {
@@ -218,7 +221,10 @@ module.exports = function(grunt) {
                 ],
                 tasks: ['concat:foConcatJs', 'copy:foMain', 'less:foDev'],
                 options: {
-                    livereload: true,
+                    livereload: {
+                        host: 'localhost',
+                        port: 35729,
+                    }
                 }
             }
         },
@@ -255,7 +261,15 @@ module.exports = function(grunt) {
                     livereload:true
                 }
             }
-  		}
+  		},
+        concurrent: {
+            options: {
+                logConcurrentOutput: true
+            },
+            server: {
+                tasks: ["fo-server", "bo-server"]
+            }
+        }
     });
 
     //load grunt tasks
@@ -267,6 +281,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-concurrent');
 
 
     // Unit task for backoffice
@@ -305,7 +320,7 @@ module.exports = function(grunt) {
 
 
     // Global tasks
-    grunt.registerTask('server', ['bo-server','fo-server']);
+    grunt.registerTask('server', ['concurrent:server']);
     grunt.registerTask('prod', ['bo-prod','fo-prod']);
     grunt.registerTask('default', ['bo-default','fo-default']);
 

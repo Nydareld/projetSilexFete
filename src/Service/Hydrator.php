@@ -20,4 +20,14 @@ class Hydrator{
         return $entity;
     }
 
+    public function update(Array $data, $entity, $className){
+        foreach ($className::getEditableFields() as $field) {
+            if(isset($data[$field])){
+                $methodeName ="set".ucfirst( $field );
+                $entity->$methodeName($data[$field]);
+            }
+        }
+        return $entity;
+    }
+
 }

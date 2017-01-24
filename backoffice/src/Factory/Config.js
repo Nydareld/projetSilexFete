@@ -1,19 +1,23 @@
+app.config(['$locationProvider', function($locationProvider) {
+    $locationProvider.hashPrefix('');
+}]);
+
 app.config(function ($routeProvider) {
 
     var routes = [
         {
             "name" : "Accueil",
             "templateUrl" : "Modules/Main/Main.html",
-            "route" : ""
+            "route" : "home"
         },{
             "name" : "NotFound",
             "templateUrl" : "Modules/Main/404.html",
             "route" : "404"
         },{
-            "name" : "TestModule",
-            "templateUrl" : "Modules/TestModule/TestModule.html",
-            "route" : "TestModule",
-            "controller": "testController"
+            "name" : "ProductModule",
+            "templateUrl" : "Modules/Product/ProductModule.html",
+            "route" : "products",
+            "controller": "productController"
         }
 
     ];

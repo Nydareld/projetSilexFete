@@ -25,10 +25,16 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src/Mo
 $app['orm.em'] = EntityManager::create($app['db.options'], $config);
 
 
-
+// === Hydrateur d'objets ===
 $app["hydrator"] = function () {
     return new TheoGuerin\Service\Hydrator();
 };
 
 // === DAOS ===
 require_once __DIR__.'/daos.php';
+
+
+// === Milldleware de sortie ===
+$app->after(function (Request $request, Response $response) {
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+});

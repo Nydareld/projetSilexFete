@@ -1,5 +1,4 @@
-
-<div>
+<div  ng-controller="Block.SideBar.Controller as ctrl">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
         <div class="pull-left image">
@@ -29,19 +28,7 @@
         <li class="header">HEADER</li>
 
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a ng-href="#toto"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li><a ng-href="#TestModule"><i class="fa fa-link"></i> <span>templates</span></a></li>
-        <li class="treeview">
-            <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="#">Link in level 2</a></li>
-                <li><a href="#">Link in level 2</a></li>
-            </ul>
-        </li>
+    <li ng-class="getClass('/home')"><a href="#/home"><i class="fa fa-link"></i> <span>DashBoard</span></a></li>
+        <li ng-class="getClass('/products')"><a ng-href="#/products"><i class="fa fa-link"></i> <span>produits</span></a></li>
     </ul>
 </div>

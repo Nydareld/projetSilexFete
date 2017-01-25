@@ -21,7 +21,6 @@ class ProductController{
 
     public function getProductAction(Request $req, Application $app, $id){
         $product = $app["dao.product"]->getOneById($id);
-        var_dump($product);
         if ($product === null){
             return $app->json( array(
                 'success' => false,
@@ -113,8 +112,6 @@ class ProductController{
 
         $comment = $app['hydrator']->hydrate($req->request->all(),'TheoGuerin\Model\Comment');
 
-
-
         if(gettype($comment) == 'string'){
             return $app->json( array(
                 'success' => false,
@@ -126,7 +123,6 @@ class ProductController{
 
         $app['dao.comment']->save($comment);
         $app['dao.product']->save($product);
-
         return $app->json( array(
             'success' => true,
             'count' => 1,

@@ -1,9 +1,64 @@
-app.controller('productController', ['$scope','app.products',function($scope,service){
-    service.cget().query().$promise.then(function(data){
-        console.log(data[0].name);
-        $scope.products = data;
-        for (product of $scope.products) {
-            console.log(product.name);
+app.controller('productController', ['$scope','app.products','$filter',function($scope,service,$filter){
+
+    var me = this;
+
+    /**
+     * recharge les produits de la liste
+     * @method reloadProducts
+     */
+    me.reloadProducts = function(){
+        service.cget().then(function(res){
+            $scope.products = res.data.data;
+        });
+    }
+
+    /**
+     * Ajout une produit ou en met a jours un
+     * @method addProduct
+     * @param  product   product le produit a ajouter
+     */
+    me.addProduct = function(product){
+        var oldProduct = $filter('getById')($scope.products,product.id);
+        if(oldProduct){
+            $scope.products.splice($scope.products.indexOf(oldProduct),1);
         }
-    });
+        $scope.products.push(product);
+    }
+
+    /**
+     * Reinitialise le produit de la modal
+     * @method resetCurrentProduct
+     */
+    $scope.resetCurrentProduct = function(){
+        $scope.modalProduct = {
+            name :null,
+            description :null,
+            price :null
+        };
+    }
+
+    /**
+     * Attribue le produit de la modal
+     * @method setCurrentProduct
+     * @param  product          product Produit a editer dans la modal
+     */
+    $scope.setCurrentProduct = function(product){
+        $scope.modalProduct = angular.copy(product);
+    }
+
+    /**
+     * Sauvegarde un produit
+     * @method saveProduct
+     * @param  product    product le produit a sauvgarder
+     */
+    $scope.saveProduct = function(product){
+        service.save(product).then(function(res){
+            me.addProduct(res.data.data);
+            angular.element('#ProductModal').modal('hide');
+        });
+    }
+
+    me.reloadProducts();
+
+    return me;
 }]);

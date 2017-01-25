@@ -11,10 +11,15 @@
     "components-font-awesome": "^4.7.0",
     "angular-bootstrap": "^2.2.0",
     "angular-animate": "^1.5.8",
-    "angular-touch": "^1.5.8"
+    "angular-touch": "^1.5.8",
+    "datatables.net": "^2.1.1",
+    "datatables.net-bs": "^2.1.1",
+    "textAngular": "^1.5.16"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "appPath": "app",
-  "moduleName": "greenTeufBackOffice"
+  "moduleName": "greenTeufBackOffice",
+  "resolutions": {
+    "angular-datatables": "angular1"
+  }
 }

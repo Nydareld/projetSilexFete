@@ -12,3 +12,7 @@ $app->get('/api/event/{id}',"TheoGuerin\ApiController\EventController::getEventA
 $app->post('/api/event',"TheoGuerin\ApiController\EventController::postEventAction");
 $app->put('/api/event/{id}',"TheoGuerin\ApiController\EventController::putEventAction");
 $app->delete('/api/event/{id}',"TheoGuerin\ApiController\EventController::deleteEventAction");
+
+
+//Comment
+$app->post('/api/product/{id}/comment',"TheoGuerin\ApiController\ProductController::postCommentAction");

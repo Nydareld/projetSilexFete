@@ -44,6 +44,11 @@ class Product extends AbstractEntity{
      */
     private $price;
 
+    /**
+     * @OneToMany(targetEntity="TheoGuerin\Model\Comment", mappedBy="product")
+     */
+    private $comments;
+
 
     public function __construct()
     {
@@ -51,7 +56,7 @@ class Product extends AbstractEntity{
     }
 
     public static function getFields(){
-        return array("id", "name", "description", "creationDate", "images", "price" );
+        return array("id", "name", "comments", "description", "creationDate", "images", "price" );
     }
 
     public static function getEditableFields(){
@@ -93,6 +98,33 @@ class Product extends AbstractEntity{
     {
         $this->name = $name;
 
+        return $this;
+    }
+
+    /**
+     * Get the value of Comments
+     *
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    public function setComments($comments)
+    {
+        $this->comments=$comments;
+        return $this;
+    }
+
+    /**
+     * Get the value of Comments
+     *
+     * @return string
+     */
+    public function addComments($comment)
+    {
+        array_push($this->comments, $comment);
         return $this;
     }
 
@@ -171,11 +203,13 @@ class Product extends AbstractEntity{
      *
      * @return self
      */
-    public function setprice($price)
+    public function setPrice($price)
     {
         $this->price = $price;
 
         return $this;
     }
+
+
 
 }

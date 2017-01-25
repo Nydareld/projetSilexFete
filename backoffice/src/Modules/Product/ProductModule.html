@@ -1,0 +1,118 @@
+<div ng-controller="productController">
+
+    <section class="content-header">
+        <h1>
+            Liste des produits
+            <small>Voyez la liste des produits</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Green-Teuf.com</a></li>
+            <li class="active">produits</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="widgets row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><i class="fa fa-product-hunt"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Produits</span>
+                        <span class="info-box-number">{{products.length}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <a ng-click="resetCurrentProduct()" href='' data-toggle="modal" data-target="#ProductModal">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-plus-circle"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-number">Créer produit</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </a>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Liste des produits</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered table-striped dataTable">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Date de création</th>
+                            <th>Prix</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Date de création</th>
+                            <th>Prix</th>
+                        </tr>
+                    </tfoot>
+
+                    <tbody>
+                        <tr ng-repeat="product in products">
+                            <td><a ng-click="setCurrentProduct(product)" href='' data-toggle="modal" data-target="#ProductModal">{{product.name}}</a></td>
+                            <td>{{product.description}}</td>
+                            <td>{{product.creationDate.date | dateToISO | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                            <td>{{product.price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="ProductModal">
+            <div class="modal-dialog" role="document" style="width:60%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">Produit</h4>
+                    </div>
+
+                    <form ng-submit="saveProduct(modalProduct)">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label" for="name">Nom</label>
+                                <input id="name" name="name" type="text" placeholder="barbecue, table ..." class="form-control" ng-model="modalProduct.name" required="">
+                            </div>
+
+                            <div text-angular ng-model="modalProduct.description"></div>
+
+                            <!-- Number input-->
+                            <div class="form-group">
+                                <label class="control-label" for="price">Prix</label>
+                                <input id="price" name="price" type="nulber" class="form-control" ng-model="modalProduct.price" required="">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </section>
+
+
+</div>

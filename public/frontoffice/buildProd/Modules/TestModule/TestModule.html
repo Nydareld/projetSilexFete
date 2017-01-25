@@ -1,0 +1,20 @@
+<div ng-controller="testController">
+
+    <section class="content-header">
+        <h1>
+            Liste des templates
+            <small>Voyez le detail des templates</small>
+        </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <ul>
+            <div ng-repeate="template in templates">
+                <li>{{template.name}}</li>
+            </div>
+        </ul>
+        <!-- Your Page Content Here -->
+
+    </section>
+</div>

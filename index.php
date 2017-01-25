@@ -1,9 +1,7 @@
 <?php
 
-require_once __DIR__."/vendor/autoload.php";
+date_default_timezone_set ("Europe/Paris");
 
-$app = new Silex\Application();
-global $app;
-require_once __DIR__."/app/app.php";
+require_once __DIR__.'/bootstrap.php';
 
 $app->run();

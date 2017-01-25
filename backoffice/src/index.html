@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+        <title>Green Teuf back</title>
+
+        <script src="https://use.fontawesome.com/8fe5d59a47.js"></script>
+
+        <link rel="stylesheet" href="/style/bower.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="/style/all.css" media="screen" title="no title" charset="utf-8">
+
+    </head>
+    <body ng-app="greenTeufBackOffice" ng-cloak class="hold-transition skin-blue sidebar-mini" >
+
+        <div class="wrapper" ng-controller="MainController">
+
+            <header class="main-header">
+                <div ng-include="'/Blocks/TopBar/TopBar.html'"></div>
+            </header>
+
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <div ng-include="'/Blocks/SideBar/SideBar.html'"></div>
+                </section>
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <div ng-view></div>
+            </div>
+
+
+            <footer class="main-footer">
+                <div ng-include="'/Blocks/Footer/Footer.html'"></div>
+            </footer>
+
+            <aside class="control-sidebar control-sidebar-dark" ng-controller="Block.SettingSideBar.Controller as ctlr" ng-class="{'control-sidebar-open': opened}">
+                <div ng-include="'/Blocks/SettingSideBar/SettingSideBar.html'"></div>
+            </aside>
+
+            <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
+
+        </div>
+
+        <script src="scripts/bower.js"></script>
+        <script src="scripts/app.js"></script>
+
+    </body>
+</html>

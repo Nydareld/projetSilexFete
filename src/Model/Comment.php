@@ -55,6 +55,10 @@ class Comment extends AbstractEntity{
         return array("pseudo", "text");
     }
 
+    public static function getIgnoredFields(){
+        return array("product");
+    }
+
     /**
      * Get the value of Id
      *

@@ -290,12 +290,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "94016b98a15047001e2eac0c2039d1e99638f2f9"
+                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/94016b98a15047001e2eac0c2039d1e99638f2f9",
-                "reference": "94016b98a15047001e2eac0c2039d1e99638f2f9",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fc376f7a61498e18520cd6fa083752a4ca08072b",
+                "reference": "fc376f7a61498e18520cd6fa083752a4ca08072b",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-01-19 15:41:26"
+            "time": "2017-01-23 23:17:10"
         },
         {
             "name": "doctrine/inflector",
@@ -747,12 +747,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "0115e23eb975f1665799956b6090baf1fb970f4a"
+                "reference": "02ba1df92601c47da70a4f189a48a91b276be78c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/0115e23eb975f1665799956b6090baf1fb970f4a",
-                "reference": "0115e23eb975f1665799956b6090baf1fb970f4a",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/02ba1df92601c47da70a4f189a48a91b276be78c",
+                "reference": "02ba1df92601c47da70a4f189a48a91b276be78c",
                 "shasum": ""
             },
             "require": {
@@ -792,12 +792,12 @@
                 "symfony/twig-bridge": "~2.8|^3.0",
                 "symfony/validator": "~2.8|^3.0",
                 "symfony/var-dumper": "~2.8|^3.0",
-                "twig/twig": "~1.8|~2.0"
+                "twig/twig": "~1.28|~2.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -824,7 +824,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2016-10-03 17:59:35"
+            "time": "2017-01-09 14:25:20"
         },
         {
             "name": "symfony/class-loader",
@@ -885,12 +885,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "4272e242823935c74c4090aa9b60bcf0d42f2a2e"
+                "reference": "4dab8f5b2d6dbfb8ec808bd3d9d89dfa0eba5c42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/4272e242823935c74c4090aa9b60bcf0d42f2a2e",
-                "reference": "4272e242823935c74c4090aa9b60bcf0d42f2a2e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/4dab8f5b2d6dbfb8ec808bd3d9d89dfa0eba5c42",
+                "reference": "4dab8f5b2d6dbfb8ec808bd3d9d89dfa0eba5c42",
                 "shasum": ""
             },
             "require": {
@@ -942,7 +942,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-21 17:19:16"
+            "time": "2017-01-23 22:46:36"
         },
         {
             "name": "symfony/debug",

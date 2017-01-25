@@ -210,6 +210,12 @@ class Product extends AbstractEntity{
         return $this;
     }
 
+    public function jsonSerialize(){
+        $res = parent::jsonSerialize();
+        $res['comments'] = $this->getComments()->getValues();
+        return $res;
+    }
+
 
 
 }

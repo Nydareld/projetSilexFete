@@ -37,4 +37,6 @@ require_once __DIR__.'/daos.php';
 // === Milldleware de sortie ===
 $app->after(function (Request $request, Response $response) {
     $response->headers->set('Access-Control-Allow-Origin', '*');
+    $response->headers->set('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    $response->headers->set('Access-Control-Allow-Methods','GET, POST, PUT');
 });

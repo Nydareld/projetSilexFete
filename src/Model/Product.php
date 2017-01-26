@@ -213,6 +213,7 @@ class Product extends AbstractEntity{
     public function jsonSerialize(){
         $res = parent::jsonSerialize();
         $res['comments'] = $this->getComments()->getValues();
+        $res['comments_count'] = count($res['comments']);
         return $res;
     }
 

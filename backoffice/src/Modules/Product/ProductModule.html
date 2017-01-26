@@ -14,7 +14,20 @@
     <section class="content">
 
         <div class="widgets row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <a ng-click="resetCurrentProduct()" href='' data-toggle="modal" data-target="#ProductModal">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-green"><i class="fa fa-plus-circle"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-number">Créer produit</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box">
                     <span class="info-box-icon bg-aqua"><i class="fa fa-product-hunt"></i></span>
 
@@ -26,18 +39,17 @@
                 </div>
                 <!-- /.info-box -->
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <a ng-click="resetCurrentProduct()" href='' data-toggle="modal" data-target="#ProductModal">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-aqua"><i class="fa fa-plus-circle"></i></span>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-yellow"><i class="fa fa-commenting"></i></span>
 
-                        <div class="info-box-content">
-                            <span class="info-box-number">Créer produit</span>
-                        </div>
-                        <!-- /.info-box-content -->
+                    <div class="info-box-content">
+                        <span class="info-box-text">Commentaires</span>
+                        <span class="info-box-number">{{comments}}</span>
                     </div>
-                    <!-- /.info-box -->
-                </a>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
             </div>
         </div>
         <div class="box">
@@ -53,6 +65,7 @@
                             <th>Description</th>
                             <th>Date de création</th>
                             <th>Prix</th>
+                            <th>Nombre de commentaires</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -61,6 +74,7 @@
                             <th>Description</th>
                             <th>Date de création</th>
                             <th>Prix</th>
+                            <th>Nombre de commentaires</th>
                         </tr>
                     </tfoot>
 
@@ -70,6 +84,7 @@
                             <td>{{product.description}}</td>
                             <td>{{product.creationDate.date | dateToISO | date:'dd/MM/yyyy HH:mm:ss'}}</td>
                             <td>{{product.price}}</td>
+                            <td>{{product.comments_count}}</td>
                         </tr>
                     </tbody>
                 </table>

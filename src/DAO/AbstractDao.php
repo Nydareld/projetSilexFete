@@ -1,14 +1,19 @@
 <?php
 namespace TheoGuerin\DAO;
+
 use Doctrine\ORM\EntityManager;
+use TheoGuerin\Service\QuerryParam;
+
 abstract class AbstractDao
 {
 
+    private $querryParam;
     private $em;
     protected $className;
 
-    public function __construct(EntityManager $em) {
+    public function __construct(EntityManager $em, QuerryParam $querryParam) {
         $this->em = $em;
+        $this->querryParam = $querryParam;
     }
 
     protected function getEm() {
@@ -23,9 +28,15 @@ abstract class AbstractDao
         $this->getEm()->remove($object);
         $this->getEm()->flush();
     }
-
+// findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     public function getAll(){
-        $object= $this->getEm()->getRepository($this->className)->findAll();
+        $object= $this->getEm()->getRepository($this->className)->findBy(
+            $this->querryParam->getFilter(),
+            $this->querryParam->getSort(),
+            $this->querryParam->getLimit(),
+            $this->querryParam->getOffset()
+        );
+
         if ($object === null){
             return array();
         }else{

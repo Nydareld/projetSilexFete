@@ -30,6 +30,11 @@ $app["hydrator"] = function () {
     return new TheoGuerin\Service\Hydrator();
 };
 
+// === Hydrateur d'objets ===
+$app["querryparam"] = function ($app) {
+    return new TheoGuerin\Service\QuerryParam($app['request_stack']->getCurrentRequest());
+};
+
 // === DAOS ===
 require_once __DIR__.'/daos.php';
 

@@ -252,7 +252,7 @@ module.exports = function(grunt) {
   					port:3000,
   					hostname:'localhost',
   					bases:['./public/backoffice/dist'],
-  					livereload:true
+  					livereload:35728
   				}
   			},
             foAll:{
@@ -260,7 +260,7 @@ module.exports = function(grunt) {
                     port:4000,
                     hostname:'localhost',
                     bases:['./public/frontoffice/dist'],
-                    livereload:true
+                    livereload:35729
                 }
             }
   		},

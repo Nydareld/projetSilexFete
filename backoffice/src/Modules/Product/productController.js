@@ -13,6 +13,20 @@ app.controller('productController', ['$scope','app.products','$filter',function(
     }
 
     /**
+     * Rafraichie le nombre de comentaires
+     * @method reloadComentsCount
+     */
+    me.reloadComentsCount = function(){
+        $scope.comments = 0;
+        if($scope.products){
+            for (var i = 0; i < $scope.products.length; i++) {
+                $scope.comments += $scope.products[i].comments_count;
+                console.log($scope.products[i].comments_count);
+            }
+        }
+    }
+
+    /**
      * Ajout une produit ou en met a jours un
      * @method addProduct
      * @param  product   product le produit a ajouter
@@ -57,6 +71,8 @@ app.controller('productController', ['$scope','app.products','$filter',function(
             angular.element('#ProductModal').modal('hide');
         });
     }
+
+    $scope.$watch('products', function() { me.reloadComentsCount() }, true);
 
     me.reloadProducts();
 

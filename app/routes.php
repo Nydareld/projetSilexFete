@@ -21,3 +21,7 @@ $app->delete('/api/event/{id}',"TheoGuerin\ApiController\EventController::delete
 
 //Comment
 $app->post('/api/product/{id}/comment',"TheoGuerin\ApiController\ProductController::postCommentAction");
+
+
+//Location
+$app->post('/api/product/{id}/location',"TheoGuerin\ApiController\ProductController::postLocationAction");

@@ -49,6 +49,10 @@ class Product extends AbstractEntity{
      */
     private $comments;
 
+    /**
+     * @OneToMany(targetEntity="TheoGuerin\Model\Location", mappedBy="product")
+     */
+    private $locations;
 
     public function __construct()
     {
@@ -125,6 +129,22 @@ class Product extends AbstractEntity{
     public function addComments($comment)
     {
         array_push($this->comments, $comment);
+        return $this;
+    }
+
+    /**
+     * Get the value of Locations
+     *
+     * @return string
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    public function setLocations($locations)
+    {
+        $this->locations=$locations;
         return $this;
     }
 
@@ -214,6 +234,8 @@ class Product extends AbstractEntity{
         $res = parent::jsonSerialize();
         $res['comments'] = $this->getComments()->getValues();
         $res['comments_count'] = count($res['comments']);
+        $res['locations'] = $this->getLocations()->getValues();
+        $res['locations_count'] = count($res['locations']);
         return $res;
     }
 

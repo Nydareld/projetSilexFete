@@ -12,3 +12,8 @@ $app["dao.comment"] = function ($app) {
 $app["dao.event"] = function ($app) {
     return new TheoGuerin\DAO\EventDao($app['orm.em'],$app["querryparam"]);
 };
+
+
+$app["dao.location"] = function ($app) {
+    return new TheoGuerin\DAO\LocationDao($app['orm.em'],$app["querryparam"]);
+};

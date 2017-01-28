@@ -5,6 +5,8 @@ namespace TheoGuerin\ApiController;
 use TheoGuerin\Model\Product;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use TheoGuerin\Model\Event;
+use \Datetime;
 
 
 class ProductController{
@@ -49,9 +51,9 @@ class ProductController{
         $app['dao.product']->save($product);
 
         return $app->json( array(
-            'success' => true,
-            'count' => 1,
-            'data' => $product
+        'success' => true,
+        'count' => 1,
+        'data' => $product
         ),201);
     }
 
@@ -59,25 +61,25 @@ class ProductController{
         $product = $app["dao.product"]->getOneById($id);
         if ($product === null){
             return $app->json( array(
-                'success' => false,
-                'details' => 'product not found',
+            'success' => false,
+            'details' => 'product not found',
             ),404);
         } else {
             $product = $app['hydrator']->update($req->request->all(),$product,'TheoGuerin\Model\Product');
             $app['dao.product']->save($product);
             return $app->json( array(
-                'success' => true,
-                'count' => 1,
-                'data' => $product
+            'success' => true,
+            'count' => 1,
+            'data' => $product
             ),200);
         }
 
         $app['dao.product']->save($product);
 
         return $app->json( array(
-            'success' => true,
-            'count' => 1,
-            'data' => $product
+        'success' => true,
+        'count' => 1,
+        'data' => $product
         ),201);
     }
 
@@ -85,15 +87,15 @@ class ProductController{
         $product = $app["dao.product"]->getOneById($id);
         if ($product === null){
             return $app->json( array(
-                'success' => false,
-                'details' => 'product not found',
+            'success' => false,
+            'details' => 'product not found',
             ),404);
         } else {
             $app['dao.product']->remove($product);
             return $app->json( array(
-                'success' => true,
-                'count' => 1,
-                'data' => $product
+            'success' => true,
+            'count' => 1,
+            'data' => $product
             ),200);
         }
     }
@@ -105,8 +107,8 @@ class ProductController{
 
         if ($product === null){
             return $app->json( array(
-                'success' => false,
-                'details' => 'product not found',
+            'success' => false,
+            'details' => 'product not found',
             ),404);
         }
 
@@ -114,19 +116,61 @@ class ProductController{
 
         if(gettype($comment) == 'string'){
             return $app->json( array(
-                'success' => false,
-                'details' => $comment
+            'success' => false,
+            'details' => $comment
             ),400);
         }
 
         $comment->setProduct($product);
 
         $app['dao.comment']->save($comment);
-        $app['dao.product']->save($product);
         return $app->json( array(
-            'success' => true,
-            'count' => 1,
-            'data' => $product
+        'success' => true,
+        'count' => 1,
+        'data' => $app["dao.product"]->getOneById($id)
+        ),201);
+    }
+
+    public function postLocationAction(Request $req, Application $app,$id){
+        $product = $app["dao.product"]->getOneById($id);
+
+        if ($product === null){
+            return $app->json( array(
+            'success' => false,
+            'details' => 'product not found',
+            ),404);
+        }
+
+        $location = $app['hydrator']->hydrate($req->request->all(),'TheoGuerin\Model\Location');
+
+        if(gettype($location) == 'string'){
+            return $app->json( array(
+            'success' => false,
+            'details' => $location
+            ),400);
+        }
+
+        $debutLocation = new Event();
+        $finLocation   = new Event();
+        $debutLocation->setDate(new Datetime($req->request->get('debutLocation')));
+        $debutLocation->setName("debut location produit ".$product->getId());
+
+        $finLocation->setDate(new Datetime($req->request->get('finLocation')));
+        $finLocation->setName("fin location produit ".$product->getId());
+
+        $app['dao.event']->save($debutLocation);
+        $app['dao.event']->save($finLocation);
+        
+        $location->setDebutLocation($debutLocation);
+        $location->setFinLocation($finLocation);
+        $location->setProduct($product);
+
+
+        $app['dao.location']->save($location);
+        return $app->json( array(
+        'success' => true,
+        'count' => 1,
+        'data' => $app["dao.product"]->getOneById($id)
         ),201);
     }
 

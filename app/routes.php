@@ -26,3 +26,5 @@ $app->delete('/api/event/{id}',"TheoGuerin\ApiController\EventController::delete
 
 // Image
 $app->post('/api/image',"TheoGuerin\ApiController\ImageController::postImageAction");
+$app->get('/api/image/categories',"TheoGuerin\ApiController\ImageController::getImageCategoryAction");
+$app->get('/api/images/category/{catergoryName}',"TheoGuerin\ApiController\ImageController::getCategoryAction");

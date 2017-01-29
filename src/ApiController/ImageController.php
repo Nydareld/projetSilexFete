@@ -15,6 +15,33 @@ class ImageController{
         $this->baseUri = $baseUri;
     }
 
+    public function getImageCategoryAction(Request $req, Application $app)
+    {
+        $categories = $app['dao.image']->distinctValuesOfFied('category');
+        $res = array();
+        foreach ($categories as $category) {
+            array_push($res,array(
+                'name'=> $category['category'],
+                'path'=> 'http://'.$req->getHttpHost().'/api/images/category/'.$category['category']
+            ));
+        }
+        return $app->json( array(
+            'success' => true,
+            'count' => count($res),
+            'data' => $res
+        ),200);
+    }
+
+    public function getCategoryAction(Request $req, Application $app, $catergoryName)
+    {
+        $images = $app['dao.image']->findBy(array( 'category' => $catergoryName ), array() );
+        return $app->json( array(
+            'success' => true,
+            'count' => count($images),
+            'data' => $images
+        ),200);
+    }
+
     public function postImageAction(Request $req, Application $app)
     {
 

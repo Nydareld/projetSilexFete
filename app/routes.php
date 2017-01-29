@@ -11,6 +11,12 @@ $app->post('/api/product',"TheoGuerin\ApiController\ProductController::postProdu
 $app->put('/api/product/{id}',"TheoGuerin\ApiController\ProductController::putProductAction");
 $app->delete('/api/product/{id}',"TheoGuerin\ApiController\ProductController::deleteProductAction");
 
+// Product add Comment
+$app->post('/api/product/{id}/comment',"TheoGuerin\ApiController\ProductController::postCommentAction");
+
+// Product add Location
+$app->post('/api/product/{id}/location',"TheoGuerin\ApiController\ProductController::postLocationAction");
+
 // Event
 $app->get('/api/event',"TheoGuerin\ApiController\EventController::getAllEventAction");
 $app->get('/api/event/{id}',"TheoGuerin\ApiController\EventController::getEventAction");
@@ -18,10 +24,5 @@ $app->post('/api/event',"TheoGuerin\ApiController\EventController::postEventActi
 $app->put('/api/event/{id}',"TheoGuerin\ApiController\EventController::putEventAction");
 $app->delete('/api/event/{id}',"TheoGuerin\ApiController\EventController::deleteEventAction");
 
-
-//Comment
-$app->post('/api/product/{id}/comment',"TheoGuerin\ApiController\ProductController::postCommentAction");
-
-
-//Location
-$app->post('/api/product/{id}/location',"TheoGuerin\ApiController\ProductController::postLocationAction");
+// Image
+$app->post('/api/image',"TheoGuerin\ApiController\ImageController::postImageAction");

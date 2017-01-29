@@ -232,9 +232,17 @@ class Product extends AbstractEntity{
 
     public function jsonSerialize(){
         $res = parent::jsonSerialize();
-        $res['comments'] = $this->getComments()->getValues();
+        if($this->getComments()){
+            $res['comments'] = $this->getComments()->getValues();
+        }else {
+            $res['comments'] = array();
+        }
         $res['comments_count'] = count($res['comments']);
-        $res['locations'] = $this->getLocations()->getValues();
+        if($this->getLocations()){
+            $res['locations'] = $this->getLocations()->getValues();
+        }else {
+            $res['locations'] = array();
+        }
         $res['locations_count'] = count($res['locations']);
         return $res;
     }

@@ -1,21 +1,38 @@
-# Test Silex Api #
+# Projet Silex Fete #
 
 ## Introduction ##
 
-This is a test of silex to build rest Api
+Ceci est un projet universitaire dont le but est d'utiliser le framework silex pour créer une API REST dédiée a la création d'un site de loccation de materiel d'organisation de soirée.
 
-This application is not for production.
+Cette application n'est pas dédiée a la production
 
-## Installation ##
+## Installation (linux) ##
 
-first install all ressources with composer (instalation of composer [here](https://getcomposer.org/download/))
+### Installation des dépendances php ###
+
+Installation des dépendances php (instalation de composer [ici](https://getcomposer.org/download/)) :
 
     composer install
 
-Then copy the config file
+Copie du fichier de variables de base de donnée :
 
     cp app/config/parameters.php.dist app/config/parameters.php
 
-Finaly Modifiy the app/config/parameters.php
+Modifiez le fichier :
 
-You can auto-generate the database structure by calling the route "/admin/createBase"
+    vi app/config/parameters.php
+
+Créez la base de donnée a l'aide de doctrine :
+     php vendor/bin/doctrine orm:schema-tool:create
+
+### Installation des dépendances javascript (si vous developpez seulement ) ###
+
+Installation des dépendances npm de préproduction des fronts (instalation de nodejs et npm [ici](https://docs.npmjs.com/getting-started/installing-node)) :
+
+    npm install
+
+Installation des dépendances bower des fronts (instalation de bower  [ici](https://bower.io/)) :
+
+    cd backoffice ; bower install ; cd ../frontoffice ; bower install ; cd ..
+
+## Téchnologies ##

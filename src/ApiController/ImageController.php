@@ -4,6 +4,7 @@ namespace TheoGuerin\ApiController;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use TheoGuerin\Model\Image;
 
 
 class ImageController{
@@ -17,7 +18,16 @@ class ImageController{
     public function postImageAction(Request $req, Application $app)
     {
 
-        $index = $req->request->get('index');
+        $image = $app['hydrator']->hydrate($req->request->all(),'TheoGuerin\Model\Image');
+
+        if(gettype($image) == 'string'){
+            return $app->json( array(
+                'success' => false,
+                'details' => $image
+            ),400);
+        }
+
+        $category = $image->getCategory();
         $file = $req->files->get('image');
 
         if(!$file){
@@ -27,7 +37,7 @@ class ImageController{
             ),400);
         }
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
-        $folder = $this->uploadDir.'/'.$index;
+        $folder = $this->uploadDir.'/'.$category;
 
         if (!file_exists($folder)) {
             mkdir($folder, 0777, true);
@@ -37,11 +47,13 @@ class ImageController{
             $folder,
             $fileName
         );
+        $image->setPath($req->getHttpHost()."/".$this->baseUri."/".$category."/".$fileName);
+        $app['dao.image']->save($image);
 
         return $app->json( array(
             'success' => true,
             'count' => 1,
-            'data' => $req->getHttpHost()."/".$this->baseUri."/".$index."/".$fileName
+            'data' => $image
         ),201);
     }
 

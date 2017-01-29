@@ -18,6 +18,12 @@ app.config(['$routeProvider',function ($routeProvider) {
             "templateUrl" : "Modules/Product/ProductModule.html",
             "route" : "products",
             "controller": "productController"
+        },{
+            "name" : "ImagesModule",
+            "templateUrl" : "Modules/Images/ImagesModule.html",
+            "route" : "images",
+            "controller": "imagesController"
+
         }
 
     ];

@@ -10,9 +10,11 @@ module.exports = function(grunt) {
         'backoffice/bower_components/angular-touch/angular-touch.js',
         'backoffice/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         'backoffice/bower_components/AdminLTE/dist/js/app.js',
-        'backoffice/bower_components/textAngular/dist/textAngular-rangy.min.js',
+        'backoffice/bower_components/rangy/rangy-core.js',
+        'backoffice/bower_components/rangy/rangy-selectionsaverestore.js',
         'backoffice/bower_components/textAngular/dist/textAngular-sanitize.min.js',
-        'backoffice/bower_components/textAngular/dist/textAngular.min.js'
+        'backoffice/bower_components/textAngular/dist/textAngularSetup.js',
+        'backoffice/bower_components/textAngular/dist/textAngular.js'
     ];
 
     var boBowerCss = [

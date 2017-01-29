@@ -5,11 +5,11 @@ app.controller('imagesController', ['$scope','app.images',function($scope,servic
     me.refreshCategory = function(){
         service.getCategoriesList().then(function(res){
             $scope.categories = res.data.data;
-            $scope.setCurrent($scope.categories[0].name);
+            $scope.setCurrentCategory($scope.categories[0].name);
         });
     }
 
-    $scope.setCurrent = function(categoryName){
+    $scope.setCurrentCategory = function(categoryName){
         $scope.current = categoryName;
         if(!$scope.currentData){
             $scope.currentData = {};
@@ -17,7 +17,6 @@ app.controller('imagesController', ['$scope','app.images',function($scope,servic
         if(!$scope.currentData[categoryName]){
             service.getCategory(categoryName).then(function(res){
                 $scope.currentData[categoryName] = res.data.data;
-                console.log($scope.currentData[categoryName]);
             });
         }
     }

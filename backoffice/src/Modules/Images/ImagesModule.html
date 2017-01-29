@@ -21,7 +21,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
                     <li ng-repeat="category in categories" ng-class="getClass(category.name)">
-                        <a href="" ng-clic="setCurrent(category.name)" ng-class="getClass(category.name)" data-target="#tab-{{category.name}}" data-toggle="tab" aria-expanded="false">
+                        <a href="" ng-click="setCurrentCategory(category.name)" ng-class="getClass(category.name)" data-target="#tab-{{category.name}}" data-toggle="tab" aria-expanded="false">
                             {{category.name}}
                         </a>
                     </li>

@@ -30,24 +30,25 @@ class ImageController{
         $category = $image->getCategory();
         $file = $req->files->get('image');
 
-        if(!$file){
+        if($file){
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $folder = $this->uploadDir.'/'.$category;
+
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+            }
+
+            $file->move(
+                $folder,
+                $fileName
+            );
+            $image->setPath("http://".$req->getHttpHost()."/".$this->baseUri."/".$category."/".$fileName);
+        }elseif ($image->getPath() == null) {
             return $app->json( array(
                 'success' => false,
-                'details' => "missing file"
+                'details' => "missing file or external url"
             ),400);
         }
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
-        $folder = $this->uploadDir.'/'.$category;
-
-        if (!file_exists($folder)) {
-            mkdir($folder, 0777, true);
-        }
-
-        $file->move(
-            $folder,
-            $fileName
-        );
-        $image->setPath($req->getHttpHost()."/".$this->baseUri."/".$category."/".$fileName);
         $app['dao.image']->save($image);
 
         return $app->json( array(

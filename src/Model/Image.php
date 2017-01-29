@@ -60,7 +60,7 @@ class Image extends AbstractEntity{
     }
 
     public static function getEditableFields(){
-        return array("creator", "name", "category", "description");
+        return array("creator", "name", "category", "path", "description");
     }
 
     public static function getRequiredFields(){

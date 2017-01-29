@@ -207,8 +207,8 @@ module.exports = function(grunt) {
         watch : {
             boAll : {
                 files : [
-                    './backoffice/src/**',
-                    './backoffice/src/*'
+                    'backoffice/src/**',
+                    'backoffice/src/*'
                 ],
                 tasks: ['concat:boConcatJs', 'copy:boMain', 'less:boDev'],
                 options: {
@@ -220,8 +220,8 @@ module.exports = function(grunt) {
             },
             foAll : {
                 files : [
-                    './frontoffice/src/**',
-                    './frontoffice/src/*'
+                    'frontoffice/src/**',
+                    'frontoffice/src/*'
                 ],
                 tasks: ['concat:foConcatJs', 'copy:foMain', 'less:foDev'],
                 options: {

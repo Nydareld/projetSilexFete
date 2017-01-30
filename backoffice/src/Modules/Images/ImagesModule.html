@@ -149,13 +149,21 @@
 
                             <div class="form-group">
                                 <label class="control-label" for="creator">Créateur</label>
-                                <input id="creator" name="creator" type="text" placeholder="Toto, Tata..." class="form-control" ng-model="newImage.creator" required="">
+                                <input id="creator" name="creator" type="text" placeholder="Toto, Tata..." class="form-control" ng-model="newImage.creator">
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label" for="path">Url</label>
-                                <input id="path" name="path" type="text" placeholder="http://www.abc.fr/image.jpg" class="form-control" ng-model="newImage.path">
+                                <label class="control-label" for="path">Url ( choisisez une url ou uploadez votre image )</label>
+                                <input id="path" name="path" type="text" placeholder="http://www.abc.fr/image.jpg" class="form-control" ng-model="newImage.path" ng-required="imageToSet" ng-change="pathChange(newImage.path)">
                             </div>
+
+                            <div class="form-group">
+                                <file-field class="btn" ng-model="newImage.image" ng-class="{'btn-success':image}" preview="previewImage" ng-change="uploadChange(newImage.image.name)">Select File</file-field>
+                            </div>
+                            <p>
+                                {{newImage.image.name}}
+                            </p>
+                            <img ng-src="{{previewImage}}" class="img-responsive">
 
                         </div>
                         <div class="modal-footer">

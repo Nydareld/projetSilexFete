@@ -44,12 +44,30 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
     }
 
     $scope.clearNewImage = function(){
+        $scope.imageToSet = true;
         $scope.newImage = {
             name : null,
             description : null,
             category : null,
             path : null,
-            creator : null
+            creator : null,
+            image: {
+                name : null
+            }
+        }
+    }
+    $scope.pathChange = function(path){
+        if(path != "" || path != null){
+            $scope.imageToSet = false;
+        }else if($scope.newImage.image.name == "" || $scope.newImage.image.name == null ){
+            $scope.imageToSet = true;
+        }
+    }
+    $scope.uploadChange = function(name){
+        if(name != "" || name != null){
+            $scope.imageToSet = false;
+        }else if($scope.newImage.path == "" || $scope.newImage.path == null ){
+            $scope.imageToSet = true;
         }
     }
     $scope.setCurrentCategory = function(categoryName){
@@ -82,7 +100,6 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
             angular.element('#addImage').modal('hide');
         });
     }
-
     me.refreshCategory();
 
     return me;

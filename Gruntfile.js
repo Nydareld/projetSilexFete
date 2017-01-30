@@ -14,6 +14,7 @@ module.exports = function(grunt) {
         'backoffice/bower_components/rangy/rangy-selectionsaverestore.js',
         'backoffice/bower_components/textAngular/dist/textAngular-sanitize.min.js',
         'backoffice/bower_components/textAngular/dist/textAngularSetup.js',
+        'backoffice/bower_components/angular-bootstrap-file-field/dist/angular-bootstrap-file-field.min.js',
         'backoffice/bower_components/textAngular/dist/textAngular.js'
     ];
 

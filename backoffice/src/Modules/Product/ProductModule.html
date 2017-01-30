@@ -119,7 +119,25 @@
                                 <label class="control-label" for="price">Prix</label>
                                 <input id="price" name="price" type="number" class="form-control" ng-model="modalProduct.price" required="">
                             </div>
-
+                            <div class="form-group" ng-if="modalProduct.comments_count > 0">
+                                <label class="control-label">Commentaires</label>
+                                <table class="table table-bordered table-striped dataTable">
+                                    <thead>
+                                        <tr>
+                                            <td class="col-md-3">Pseudo</td>
+                                            <td class="col-md-2">Date</td>
+                                            <td class="col-md-7">Texte</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr ng-repeat="comment in modalProduct.comments">
+                                                <td class="col-md-3">{{comment.pseudo}}</td>
+                                                <td class="col-md-3">{{comment.creationDate.date | dateToISO | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                                <td class="col-md-7">{{comment.text}}</td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>

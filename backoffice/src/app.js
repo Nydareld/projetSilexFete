@@ -5,6 +5,7 @@ var app = angular
     'ngAnimate',
     'ngTouch',
     'ui.bootstrap',
+    'bootstrap.fileField',
     'textAngular'
 ]);
 

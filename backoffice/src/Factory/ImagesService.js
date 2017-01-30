@@ -19,10 +19,17 @@ app.factory('app.images', ['$http', function($http) {
     };
 
     this.save = function(image){
+        var payload = new FormData();
+        angular.forEach(image,function(value,key){
+            payload.append(key,value);
+        });
+
         return $http({
             method: 'POST',
             url: postImageURL,
-            data : image
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined},
+            data : payload
         });
     }
 

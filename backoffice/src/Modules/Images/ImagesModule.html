@@ -13,49 +13,51 @@
     </section>
     <!-- Main content -->
     <section class="content">
+        <div class="widgets row">
         <!-- nombre d'imgages -->
         <!-- création category -->
+
         <!-- liste catégory -->
-        <div class="col-md-12">
-            <!-- Custom Tabs (Pulled to the right) -->
-            <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs pull-right">
-                    <li ng-repeat="category in categories" ng-class="getClass(category.name)">
-                        <a href="" ng-click="setCurrentCategory(category.name)" ng-class="getClass(category.name)" data-target="#tab-{{category.name}}" data-toggle="tab" aria-expanded="false">
-                            {{category.name}}
-                        </a>
-                    </li>
-                    <li class="pull-left header"><i class="fa fa-th"></i>Images</li>
-                </ul>
-                <div class="tab-content">
+            <div class="col-md-12">
+                <!-- Custom Tabs (Pulled to the right) -->
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li ng-repeat="category in categories" ng-class="getClass(category.name)">
+                            <a href="" ng-click="setCurrentCategory(category.name)" ng-class="getClass(category.name)" data-target="#tab-{{category.name}}" data-toggle="tab" aria-expanded="false">
+                                {{category.name}}
+                            </a>
+                        </li>
+                        <li class="pull-left header"><i class="fa fa-th"></i>Images</li>
+                    </ul>
+                    <div class="tab-content">
 
-                    <div ng-repeat="category in categories" ng-class="getClass(category.name)" class="tab-pane" id="tab-{{category.name}}">
-                        <h3>{{category.name}}</h3>
-                        <div class="row">
+                        <div ng-repeat="category in categories" ng-class="getClass(category.name)" class="tab-pane" id="tab-{{category.name}}">
+                            <h3>{{category.name}}</h3>
+                            <div class="row">
 
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="image in currentData[category.name]">
-                                <div class="box box-primary  with-border">
-                                    <div class="box-header">
-                                        <h3 class="box-title">{{image.name}}</h3>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="image in currentData[category.name]">
+                                    <div class="box box-primary  with-border">
+                                        <div class="box-header">
+                                            <h3 class="box-title">{{image.name}}</h3>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <a href="" ng-click="setCurrentProduct(image)" data-toggle="modal" data-target="#imageModal">
+                                                <img class="img-responsive center-block" ng-src="{{image.path}}" alt="{{image.name}}" />
+                                            </a>
+                                        </div>
+                                        <!-- /.box-body -->
                                     </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <a href="" ng-click="setCurrentProduct(image)" data-toggle="modal" data-target="#imageModal">
-                                            <img class="img-responsive center-block" ng-src="{{image.path}}" alt="{{image.name}}" />
-                                        </a>
-                                    </div>
-                                    <!-- /.box-body -->
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
+                    <!-- /.tab-content -->
                 </div>
-                <!-- /.tab-content -->
+                <!-- nav-tabs-custom -->
             </div>
-            <!-- nav-tabs-custom -->
         </div>
-
 
         <div class="modal fade" tabindex="-1" role="dialog" id="imageModal">
             <div class="modal-dialog" role="document" style="width:60%">
@@ -78,52 +80,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-if="currentImage.name">
+                                <tr ng-repeat="property in properties" ng-if="currentImage[property.value]">
                                     <td>
-                                        Nom
+                                        {{ property.name }}
                                     </td>
-                                    <td>
-                                        {{currentImage.name}}
+                                    <td ng-if="!property.render">
+                                        {{ currentImage[property.value]}}
                                     </td>
-                                </tr>
-                                <tr ng-if="currentImage.description">
-                                    <td>
-                                        Description
-                                    </td>
-                                    <td>
-                                        {{currentImage.description}}
-                                    </td>
-                                </tr>
-                                <tr ng-if="currentImage.category">
-                                    <td>
-                                        Categorie
-                                    </td>
-                                    <td>
-                                        {{currentImage.category}}
-                                    </td>
-                                </tr>
-                                <tr ng-if="currentImage.path">
-                                    <td>
-                                        Lien
-                                    </td>
-                                    <td>
-                                        {{currentImage.path}}
-                                    </td>
-                                </tr>
-                                <tr ng-if="currentImage.creator">
-                                    <td>
-                                        Créateur
-                                    </td>
-                                    <td>
-                                        {{currentImage.creator}}
-                                    </td>
-                                </tr>
-                                <tr ng-if="currentImage.creationDate">
-                                    <td>
-                                        Date de création
-                                    </td>
-                                    <td>
-                                        {{currentImage.creationDate.date | dateToISO | date:'dd/MM/yyyy HH:mm:ss'}}
+                                    <td ng-if="property.render">
+                                        {{ property.render(currentImage[property.value]) }}
                                     </td>
                                 </tr>
                             </tbody>

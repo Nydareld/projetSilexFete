@@ -1,4 +1,4 @@
-app.controller('imagesController', ['$scope','app.images',function($scope,service){
+app.controller('imagesController', ['$scope','app.images','$filter',function($scope,service,$filter){
 
     var me = this;
 
@@ -9,6 +9,30 @@ app.controller('imagesController', ['$scope','app.images',function($scope,servic
         });
     }
 
+    $scope.properties=[
+        {
+            name : "Nom",
+            value : "name"
+        },{
+            name : "Description",
+            value : "description"
+        },{
+            name : "Categorie",
+            value : "category"
+        },{
+            name : "Lien",
+            value : "path"
+        },{
+            name : "Créateur",
+            value : "creator"
+        },{
+            name : "Date de création",
+            value : "creationDate",
+            render : function(value){
+                return $filter('date')($filter('dateToISO')(value.date), 'dd/MM/yyyy HH:mm:ss',value.timezone);
+            }
+        }
+    ]
     $scope.setCurrentCategory = function(categoryName){
         $scope.current = categoryName;
         if(!$scope.currentData){

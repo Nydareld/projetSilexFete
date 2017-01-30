@@ -15,6 +15,33 @@ class ImageController{
         $this->baseUri = $baseUri;
     }
 
+    public function getImageCategoryAction(Request $req, Application $app)
+    {
+        $categories = $app['dao.image']->distinctValuesOfFied('category');
+        $res = array();
+        foreach ($categories as $category) {
+            array_push($res,array(
+                'name'=> $category['category'],
+                'path'=> 'http://'.$req->getHttpHost().'/api/images/category/'.$category['category']
+            ));
+        }
+        return $app->json( array(
+            'success' => true,
+            'count' => count($res),
+            'data' => $res
+        ),200);
+    }
+
+    public function getCategoryAction(Request $req, Application $app, $catergoryName)
+    {
+        $images = $app['dao.image']->findBy(array( 'category' => $catergoryName ), array() );
+        return $app->json( array(
+            'success' => true,
+            'count' => count($images),
+            'data' => $images
+        ),200);
+    }
+
     public function postImageAction(Request $req, Application $app)
     {
 
@@ -30,24 +57,25 @@ class ImageController{
         $category = $image->getCategory();
         $file = $req->files->get('image');
 
-        if(!$file){
+        if($file){
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $folder = $this->uploadDir.'/'.$category;
+
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+            }
+
+            $file->move(
+                $folder,
+                $fileName
+            );
+            $image->setPath("http://".$req->getHttpHost()."/".$this->baseUri."/".$category."/".$fileName);
+        }elseif ($image->getPath() == null) {
             return $app->json( array(
                 'success' => false,
-                'details' => "missing file"
+                'details' => "missing file or external url"
             ),400);
         }
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
-        $folder = $this->uploadDir.'/'.$category;
-
-        if (!file_exists($folder)) {
-            mkdir($folder, 0777, true);
-        }
-
-        $file->move(
-            $folder,
-            $fileName
-        );
-        $image->setPath($req->getHttpHost()."/".$this->baseUri."/".$category."/".$fileName);
         $app['dao.image']->save($image);
 
         return $app->json( array(

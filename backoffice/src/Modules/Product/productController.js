@@ -21,7 +21,6 @@ app.controller('productController', ['$scope','app.products','$filter',function(
         if($scope.products){
             for (var i = 0; i < $scope.products.length; i++) {
                 $scope.comments += $scope.products[i].comments_count;
-                console.log($scope.products[i].comments_count);
             }
         }
     }

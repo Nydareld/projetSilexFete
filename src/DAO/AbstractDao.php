@@ -44,10 +44,33 @@ abstract class AbstractDao
         }
     }
 
+    public function findBy($filter,$sort){
+        $object= $this->getEm()->getRepository($this->className)->findBy(
+            $filter,
+            $sort,
+            $this->querryParam->getLimit(),
+            $this->querryParam->getOffset()
+        );
+
+        if ($object === null){
+            return array();
+        }else{
+            return $object;
+        }
+    }
+
     public function getOneById($id){
         $object= $this->getEm()->getRepository($this->className)->findOneBy(array('id' => $id));
 
         return $object;
+    }
+
+    public function distinctValuesOfFied($field){
+        return $this->getEm()->getRepository($this->className)->createQueryBuilder('obj')
+            ->select('obj.'.$field)
+            ->distinct()
+            ->getQuery()
+            ->getResult();
     }
 
 }

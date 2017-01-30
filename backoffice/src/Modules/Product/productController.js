@@ -71,6 +71,25 @@ app.controller('productController', ['$scope','app.products','$filter',function(
         });
     }
 
+    $scope.addImageToProduct = function(image){
+        if($scope.modalProduct){
+            if (!$scope.modalProduct.images) {
+                $scope.modalProduct.images = [];
+            }
+            if (image.selected) {
+                $scope.modalProduct.images.splice($scope.modalProduct.images.indexOf(image));
+                image.selected = false;
+            }else {
+                $scope.modalProduct.images.push(image);
+                image.selected = true;
+            }
+        }
+    }
+
+    $scope.addImages = function(product){
+        return $scope.$broadcast('selectImages',product);
+    }
+
     $scope.$watch('products', function() { me.reloadComentsCount() }, true);
 
     me.reloadProducts();

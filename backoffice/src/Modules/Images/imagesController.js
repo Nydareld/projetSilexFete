@@ -80,8 +80,21 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
                 $scope.currentData[categoryName] = res.data.data;
             });
         }
+        me.verifySelected($scope.currentData[categoryName]);
     }
-
+    me.verifySelected = function(images){
+        if(me.product){
+            console.log("verifySelected", me.product);
+            for (var image of images) {
+                image.selected = false;
+                for (var imageProduct of me.product.images) {
+                    if (image.id == imageProduct.id) {
+                        image.selected = true;
+                    }
+                }
+            }
+        }
+    }
     $scope.setCurrentProduct = function(image){
         $scope.currentImage = image;
     }
@@ -100,6 +113,13 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
             angular.element('#addImage').modal('hide');
         });
     }
+
+    $scope.$on('selectImages',function(e,product) {
+        me.product = product;
+        me.verifySelected($scope.currentData[$scope.current]);
+    });
+
+
     me.refreshCategory();
 
     return me;

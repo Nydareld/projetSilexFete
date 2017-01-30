@@ -109,18 +109,21 @@
                                 <input id="name" name="name" type="text" placeholder="barbecue, table ..." class="form-control" ng-model="modalProduct.name" required="">
                             </div>
 
-                            <div text-angular ng-model="modalProduct.description"></div>
+                            <div class="form-group">
+                                <label class="control-label" for="description">Description</label>
+                                <div text-angular ng-model="modalProduct.description"></div>
+                            </div>
 
                             <!-- Number input-->
                             <div class="form-group">
                                 <label class="control-label" for="price">Prix</label>
-                                <input id="price" name="price" type="nulber" class="form-control" ng-model="modalProduct.price" required="">
+                                <input id="price" name="price" type="number" class="form-control" ng-model="modalProduct.price" required="">
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
                         </div>
                     </form>
                 </div>

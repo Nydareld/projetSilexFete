@@ -33,10 +33,13 @@ class Product extends AbstractEntity{
     private $creationDate;
 
     /**
-     * @Column(type="array")
-     * @var array
+     * @ManyToMany(targetEntity="TheoGuerin\Model\Image")
+     * @JoinTable(name="product_images",
+     *      joinColumns={@JoinColumn(name="product_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="image_id", referencedColumnName="id")}
+     *      )
      */
-    private $images = array();
+    private $images;
 
     /**
      * @Column(type="float")
@@ -57,6 +60,7 @@ class Product extends AbstractEntity{
     public function __construct()
     {
         $this->creationDate = new DateTime();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public static function getFields(){
@@ -64,7 +68,7 @@ class Product extends AbstractEntity{
     }
 
     public static function getEditableFields(){
-        return array("name", "description", "images", "price" );
+        return array("name", "description", "price" );
     }
 
     public static function getRequiredFields(){
@@ -207,6 +211,25 @@ class Product extends AbstractEntity{
     }
 
     /**
+     * Set the value of Images
+     *
+     * @param array images
+     *
+     * @return self
+     */
+    public function addImage($image)
+    {
+        $this->images->add($image);
+
+        return $this;
+    }
+
+    public function clearImages(){
+        $this->images->clear();
+        return $this;
+    }
+
+    /**
      * Get the value of price
      *
      * @return float
@@ -244,6 +267,12 @@ class Product extends AbstractEntity{
             $res['locations'] = array();
         }
         $res['locations_count'] = count($res['locations']);
+        if($this->getImages()){
+            $res['images'] = $this->getImages()->toArray();
+        }else {
+            $res['images'] = array();
+        }
+        $res['images_count'] = count($res['images']);
         return $res;
     }
 

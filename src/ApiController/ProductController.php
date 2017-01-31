@@ -47,7 +47,14 @@ class ProductController{
                 'details' => $product
             ),400);
         }
-
+        if($req->request->get('images') !== null){
+            foreach ($req->request->get('images') as $imagePost) {
+                $image = $app["dao.image"]->getOneById($imagePost['id']);
+                if($image !== null){
+                    $product->addImage($image);
+                }
+            }
+        }
         $app['dao.product']->save($product);
 
         return $app->json( array(
@@ -66,6 +73,15 @@ class ProductController{
             ),404);
         } else {
             $product = $app['hydrator']->update($req->request->all(),$product,'TheoGuerin\Model\Product');
+            if($req->request->get('images') !== null){
+                $product->clearImages();
+                foreach ($req->request->get('images') as $imagePost) {
+                    $image = $app["dao.image"]->getOneById($imagePost['id']);
+                    if($image !== null){
+                        $product->addImage($image);
+                    }
+                }
+            }
             $app['dao.product']->save($product);
             return $app->json( array(
             'success' => true,
@@ -160,7 +176,7 @@ class ProductController{
 
         $app['dao.event']->save($debutLocation);
         $app['dao.event']->save($finLocation);
-        
+
         $location->setDebutLocation($debutLocation);
         $location->setFinLocation($finLocation);
         $location->setProduct($product);

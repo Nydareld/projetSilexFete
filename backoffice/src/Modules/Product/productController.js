@@ -45,7 +45,7 @@ app.controller('productController', ['$scope','app.products','$filter',function(
     $scope.resetCurrentProduct = function(){
         $scope.modalProduct = {
             name :null,
-            description :null,
+            description :"",
             price :null
         };
     }

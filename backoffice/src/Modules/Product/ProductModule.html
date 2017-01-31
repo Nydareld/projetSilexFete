@@ -111,7 +111,7 @@
 
                             <div class="form-group">
                                 <label class="control-label" for="description">Description</label>
-                                <div text-angular ng-model="modalProduct.description"></div>
+                                <div text-angular ng-required="true" ng-model="modalProduct.description"></div>
                             </div>
 
                             <!-- Number input-->
@@ -121,7 +121,22 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label" for="price">Images <a class="btn btn-primary" ng-click="addImages(modalProduct)" href='' data-toggle="modal" data-target="#ImageSelectModal"><i class="fa fa-plus"></i>Ajouter</a> </label>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="price">Images <a class="btn btn-primary" ng-click="addImages(modalProduct)" href='' data-toggle="modal" data-target="#ImageSelectModal"><i class="fa fa-plus"></i>Ajouter</a> </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="image in modalProduct.images">
+                                        <div class="box box-primary  with-border">
+                                            <div class="box-header">
+                                                <h3 class="box-title">{{image.name}}</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <img class="img-responsive center-block" ng-src="{{image.path}}" alt="{{image.name}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group" ng-if="modalProduct.comments_count > 0">
                                 <label class="control-label">Commentaires</label>

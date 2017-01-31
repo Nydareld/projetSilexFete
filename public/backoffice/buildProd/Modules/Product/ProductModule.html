@@ -79,7 +79,7 @@
                     </tfoot>
 
                     <tbody>
-                        <tr ng-repeat="product in products">
+                        <tr ng-repeat="product in products | orderBy:'id'">
                             <td><a ng-click="setCurrentProduct(product)" href='' data-toggle="modal" data-target="#ProductModal">{{product.name}}</a></td>
                             <td>{{product.description}}</td>
                             <td>{{product.creationDate.date | dateToISO | date:'dd/MM/yyyy HH:mm:ss'}}</td>
@@ -109,18 +109,122 @@
                                 <input id="name" name="name" type="text" placeholder="barbecue, table ..." class="form-control" ng-model="modalProduct.name" required="">
                             </div>
 
-                            <div text-angular ng-model="modalProduct.description"></div>
+                            <div class="form-group">
+                                <label class="control-label" for="description">Description</label>
+                                <div text-angular ng-required="true" ng-model="modalProduct.description"></div>
+                            </div>
 
                             <!-- Number input-->
                             <div class="form-group">
                                 <label class="control-label" for="price">Prix</label>
-                                <input id="price" name="price" type="nulber" class="form-control" ng-model="modalProduct.price" required="">
+                                <input id="price" name="price" type="number" class="form-control" ng-model="modalProduct.price" required="">
                             </div>
 
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label" for="price">Images <a class="btn btn-primary" ng-click="addImages(modalProduct)" href='' data-toggle="modal" data-target="#ImageSelectModal"><i class="fa fa-plus"></i>Ajouter</a> </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="image in modalProduct.images">
+                                        <div class="box box-primary  with-border">
+                                            <div class="box-header">
+                                                <h3 class="box-title">{{image.name}}</h3>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <img class="img-responsive center-block" ng-src="{{image.path}}" alt="{{image.name}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="modalProduct.comments_count > 0">
+                                <label class="control-label">Commentaires</label>
+                                <table class="table table-bordered table-striped dataTable">
+                                    <thead>
+                                        <tr>
+                                            <td class="col-md-3">Pseudo</td>
+                                            <td class="col-md-2">Date</td>
+                                            <td class="col-md-7">Texte</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr ng-repeat="comment in modalProduct.comments">
+                                                <td class="col-md-3">{{comment.pseudo}}</td>
+                                                <td class="col-md-3">{{comment.creationDate.date | dateToISO | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                                <td class="col-md-7">{{comment.text}}</td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="ImageSelectModal">
+            <div class="modal-dialog" role="document" style="width:60%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">Selection d'images</h4>
+                    </div>
+
+                    <form ng-submit="saveProduct(modalProduct)">
+                        <div class="modal-body">
+                            <div class="nav-tabs-custom" ng-controller="imagesController">
+                                <ul class="nav nav-tabs pull-right">
+                                    <li ng-repeat="category in categories" ng-class="getClass(category.name)">
+                                        <a href="" ng-click="setCurrentCategory(category.name)" ng-class="getClass(category.name)" data-target="#selectorTab-{{category.name}}" data-toggle="tab" aria-expanded="false">
+                                            {{category.name}}
+                                        </a>
+                                    </li>
+                                    <li class="pull-left header"><i class="fa fa-th"></i>Images</li>
+                                </ul>
+                                <div class="tab-content">
+
+                                    <div ng-repeat="category in categories" ng-class="getClass(category.name)" class="tab-pane" id="selectorTab-{{category.name}}">
+                                        <div class="box">
+                                            <div class="box-header">
+                                                <h2 class="box-title">{{category.name}}</h2>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="row">
+
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="image in currentData[category.name]">
+                                                        <div class="box box-primary  with-border" ng-class="{imageSelected : image.selected}" >
+                                                            <a href="" ng-click="addImageToProduct(image)">
+                                                                <div class="box-header">
+                                                                    <h3 class="box-title">{{image.name}}</h3>
+                                                                </div>
+                                                                <!-- /.box-header -->
+                                                                <div class="box-body">
+                                                                    <img class="img-responsive center-block" ng-src="{{image.path}}" alt="{{image.name}}" />
+                                                                </div>
+                                                                <!-- /.box-body -->
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.tab-content -->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                            <!-- <button type="submit" class="btn btn-primary">Valider</button> -->
                         </div>
                     </form>
                 </div>

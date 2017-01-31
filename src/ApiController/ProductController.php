@@ -47,10 +47,12 @@ class ProductController{
                 'details' => $product
             ),400);
         }
-        foreach ($req->request->get('images') as $imagePost) {
-            $image = $app["dao.image"]->getOneById($imagePost['id']);
-            if($image !== null){
-                $product->addImage($image);
+        if($req->request->get('images') !== null){
+            foreach ($req->request->get('images') as $imagePost) {
+                $image = $app["dao.image"]->getOneById($imagePost['id']);
+                if($image !== null){
+                    $product->addImage($image);
+                }
             }
         }
         $app['dao.product']->save($product);

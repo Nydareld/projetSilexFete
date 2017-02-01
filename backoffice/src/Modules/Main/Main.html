@@ -1,17 +1,61 @@
+<div ng-controller="dashboardController">
+    <section class="content-header">
+        <h1>
+            Green Teuf
+            <small>Accueil</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Green Teuf</a></li>
+            <li class="active">Accueil</li>
+        </ol>
+    </section>
 
-<section class="content-header">
-    <h1>
-        Green Teuf
-        <small>Accueil</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Green Teuf</a></li>
-        <li class="active">Accueil</li>
-    </ol>
-</section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Your Page Content Here -->
+        <div class="row text-center">
 
-<!-- Main content -->
-<section class="content">
-    <!-- Your Page Content Here -->
 
-</section>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <i class="fa fa-question"></i>
+
+                        <h3 class="box-title">Propositions</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div ng-repeat="proposal in proposals" class="alert alert-info alert-dismissible" id="alert{{proposal.id}}">
+                            <button ng-click="delProp(proposal.id)" type="button" class="close" data-dismiss="alert" data-target="alert{{proposal.id}}" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-info"></i>{{proposal.pseudo}} : {{proposal.productName}}</h4>
+                            <h6>{{proposal.creationDate.date  | dateToISO | date:'dd/MM/yyyy HH:mm:ss' }}</h6>
+                            <div ng-bind-html="proposal.comment"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <i class="fa fa-envelope"></i>
+
+                        <h3 class="box-title">Contact</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="callout callout-default">
+                            <h4>I am an info callout!</h4>
+
+                            <p>Follow the steps to continue to payment.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+
+    </section>
+</div>

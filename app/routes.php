@@ -28,3 +28,8 @@ $app->delete('/api/event/{id}',"TheoGuerin\ApiController\EventController::delete
 $app->post('/api/images',"TheoGuerin\ApiController\ImageController::postImageAction");
 $app->get('/api/images/categories',"TheoGuerin\ApiController\ImageController::getImageCategoryAction");
 $app->get('/api/images/category/{catergoryName}',"TheoGuerin\ApiController\ImageController::getCategoryAction");
+
+// Proposal
+$app->get('/api/proposal',"TheoGuerin\ApiController\ProposalController::getAllProposalAction");
+$app->post('/api/proposal',"TheoGuerin\ApiController\ProposalController::postProposalAction");
+$app->delete('/api/proposal/{id}',"TheoGuerin\ApiController\ProposalController::deleteProposalAction");

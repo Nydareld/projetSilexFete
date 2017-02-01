@@ -1,4 +1,4 @@
-app.controller('productController', ['$scope','app.products',function($scope,service){
+app.controller('productsController', ['$scope','app.products',function($scope,service){
     var me = this;
     me.reloadProducts = function(){
         service.cget().then(function(res){

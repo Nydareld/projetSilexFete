@@ -34,8 +34,7 @@ module.exports = function(grunt) {
         'frontoffice/bower_components/angular-route/angular-route.js',
         'frontoffice/bower_components/angular-animate/angular-animate.js',
         'frontoffice/bower_components/angular-touch/angular-touch.js',
-        'frontoffice/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-        'frontoffice/bower_components/keycloak/dist/keycloak.js'
+        'frontoffice/bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
 
     ];
 

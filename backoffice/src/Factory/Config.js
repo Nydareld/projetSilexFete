@@ -36,8 +36,14 @@ app.config(['$routeProvider',function ($routeProvider) {
             controllerAs: route.controller
         });
     }
-
     $routeProvider.otherwise({
         redirectTo: '/404'
     });
+}]);
+
+
+
+app.factory('app.config',[function(){
+    this.apiurl = "http://localhost/~lecomte/projetSilexFete/";
+    return this;
 }]);

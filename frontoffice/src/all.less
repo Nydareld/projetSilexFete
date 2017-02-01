@@ -1,12 +1,12 @@
 /* Layout */
 .wrapper {
- min-height: 100%;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  min-height: 100%;
-  height: auto !important;
-  position: absolute;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    position: absolute;
 }
 
 body {
@@ -23,4 +23,52 @@ body {
 
 footer {
     margin: 50px 0;
+}
+
+.buy-thumbnail{
+    height: 350px;
+}
+.images {
+    position:relative;
+    height: 180px;
+}
+.slide > img{
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.slide {
+    position: absolute;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+.slide.ng-hide-add,
+.slide.ng-hide-remove {
+    -webkit-transition: all linear 0.5s;
+    -moz-transition: all linear 0.5s;
+    -o-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    display: block!important;
+}
+.slide.ng-hide-add.ng-hide-add-active,
+.slide.ng-hide-remove {
+    opacity: 0;
+}
+.slide.ng-hide-add,
+.slide.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+.center-grey {
+    background: #f2f2f2;
+}
+.arrows{
+    position: absolute;
+    top: 10px;
+    right: 20px;
 }

@@ -84,15 +84,14 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
     }
     me.verifySelected = function(images){
         if(me.product){
-            console.log("verifySelected", me.product);
-            for (var image of images) {
+            images.forEach(function(image){
                 image.selected = false;
-                for (var imageProduct of me.product.images) {
+                me.product.images.forEach(function(imageProduct){
                     if (image.id == imageProduct.id) {
                         image.selected = true;
                     }
-                }
-            }
+                });
+            });
         }
     }
     $scope.setCurrentProduct = function(image){

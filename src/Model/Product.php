@@ -21,7 +21,13 @@ class Product extends AbstractEntity{
     private $name;
 
     /**
-     * @Column(type="string",length=10000)
+    * @Column(type="string",length=200)
+    * @var string
+    */
+    private $caption;
+
+    /**
+     * @Column(type="string",length=10000,nullable=true)
      * @var string
      */
     private $description;
@@ -64,15 +70,15 @@ class Product extends AbstractEntity{
     }
 
     public static function getFields(){
-        return array("id", "name", "comments", "description", "creationDate", "images", "price" );
+        return array("id", "name", "comments", "caption", "description", "creationDate", "images", "price" );
     }
 
     public static function getEditableFields(){
-        return array("name", "description", "price" );
+        return array("name", "caption", "description", "price" );
     }
 
     public static function getRequiredFields(){
-        return array("name", "description", "price" );
+        return array("name", "caption", "price" );
     }
 
     /**
@@ -277,5 +283,30 @@ class Product extends AbstractEntity{
     }
 
 
+
+
+    /**
+     * Get the value of Caption
+     *
+     * @return string
+     */
+    public function getCaption()
+    {
+        return $this->caption;
+    }
+
+    /**
+     * Set the value of Caption
+     *
+     * @param string caption
+     *
+     * @return self
+     */
+    public function setCaption($caption)
+    {
+        $this->caption = $caption;
+
+        return $this;
+    }
 
 }

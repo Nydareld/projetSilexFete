@@ -8,7 +8,7 @@ app.config(['$routeProvider',function ($routeProvider) {
         {
             "name" : "Accueil",
             "templateUrl" : "Modules/Main/Main.html",
-            "route" : "home"
+            "route" : ""
         },{
             "name" : "NotFound",
             "templateUrl" : "Modules/Main/404.html",

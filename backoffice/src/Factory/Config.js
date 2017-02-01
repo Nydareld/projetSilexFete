@@ -44,6 +44,6 @@ app.config(['$routeProvider',function ($routeProvider) {
 
 
 app.factory('app.config',[function(){
-    this.apiurl = "http://localhost/~lecomte/projetSilexFete/";
+    this.apiurl = "http://fete.lc";
     return this;
 }]);

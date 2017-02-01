@@ -21,7 +21,7 @@ app.config(function ($routeProvider) {
         },{
             "name" : "Product",
             "templateUrl" : "Modules/Product/Product.html",
-            "route" : "product/:ID",
+            "route" : "produit/:ID",
             "controller": "productController"
         }
 

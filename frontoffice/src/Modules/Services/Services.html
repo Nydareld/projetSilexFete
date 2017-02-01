@@ -1,0 +1,40 @@
+<div ng-controller="mainController">
+    <!-- Jumbotron Header -->
+    <header class="jumbotron hero-spacer">
+        <h1>Green Teuf!</h1>
+        <p>
+            De nombreux sites & infrastructures vous proposent une large gamme de produits vous permettant de profiter tout en vous assurant les prix les plus bas, vous pensez réellement cela ? Vous n’avez encore jamais navigué sur le site GreenTeuf alors, notre site, vous assure les prix les plus bas du marché, une gamme bien plus large que ce qui peut vous être proposés dans les grandes surfaces et autres revendeurs. Le principe ? C’est très simple, pourquoi payer plus cher pour un produit que vous n’allez utiliser que peu de fois, n’acheter plus, louer chez GreenTeuf.
+        </p>
+        <p>
+            En effet, GreenTeuf se concentre principalement sur la location de matériel de tout type, plus besoin de débourser une énorme somme afin d’utiliser la tondeuse dont vous rêviez. Quant au prix, c’est très simple de manière générale tous nos clients ont pu constater une réduction de leurs dépenses de 40% en nous faisant confiance. Un prix bas annonce forcément une qualité inférieure à ce que vous pouvez trouver ailleurs ? Nos produits sont méticuleusement vérifiés pour le bien-être de nos clients vous assurant la qualité d’un produit comme si vous veniez de l’acheter.
+        </p>
+        <p>
+            Par ailleurs, chez GreenTeuf nous nous concentrons sur ce que peuvent penser nos clients, c’est pour cela qu’il est possible de laisser un commentaire sur un produit vous permettant d’expliquer ce qui a pu vous plaire ou non lors de la location de ce produit. Sachez aussi que notre gamme de produits ne fait que de grandir, en effet il vous est possible de nous proposer des produits qui pourraient intéresser d’autres personnes, il vous est même très conseillé de le faire, si l’une de vos recommandations se retrouve parmi l’un de nos produits, une réduction de 20% sur la location de celui-ci vous sera offerte, étant la personne qui l’a tout d’abord proposé. Parce que oui chez GreenTeuf on sait faire la fête comme il se doit mais nous savons avant tout vous remercier et vous fournir une qualité de service exceptionnelle.
+        </p>
+    </header>
+    <div class="container">
+        <div class="row">
+            <h2>Vous n'estes pas satifaits de notre catalogue ? Proposez des produits !</h2>
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                <form ng-submit="saveProposal(proposal)">
+                    <div class="form-group">
+                        <label class="control-label" for="prenom">Pseudo</label>
+                        <input id="prenom" name="prenom" ng-model="proposal.pseudo" type="text" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nom">Nom de prodtuit a ajouter</label>
+                        <input id="nom" name="nom" type="text" ng-model="proposal.productName" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="message">Commentaire</label>
+                        <div text-angular ng-required="true" ng-model="proposal.comment"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+
+</div>

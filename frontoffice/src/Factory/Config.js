@@ -1,3 +1,7 @@
+app.config(['$locationProvider', function($locationProvider) {
+    $locationProvider.hashPrefix('');
+}]);
+
 app.config(function ($routeProvider) {
 
     var routes = [

@@ -1,8 +1,5 @@
-app.controller('Block.NavBar.Controller', ['$scope',function($scope){
-
-    var me = this;
-
-    me.openSettings = function(){
-        $scope.$emit('PUSH_OPEN_SETTING_BUTTON');
+app.controller('Block.NavBar.Controller', ['$scope','$location',function($scope,$location){
+    $scope.getClass = function (path) {
+        return ($location.path().substr(0, path.length) === path) ? 'active' : '';
     }
 }]);

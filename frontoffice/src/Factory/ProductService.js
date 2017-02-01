@@ -1,5 +1,5 @@
-app.factory('app.products', ['$http', 'app.config', function($http, config) {
-    var url = config.apiurl+'/api/product';
+app.factory('app.products', ['$http', function($http) {
+    var url = 'http://fete.lc/api/product';
 
     this.cget = function(){
         return $http({
@@ -11,6 +11,13 @@ app.factory('app.products', ['$http', 'app.config', function($http, config) {
         return $http({
             method: 'GET',
             url: url+'/'+id
+        });
+    }
+    this.comment = function(id,comment){
+        return $http({
+            method: 'POST',
+            url: url+'/'+id+'/comment',
+            data:comment
         });
     }
     return this;

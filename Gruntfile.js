@@ -34,13 +34,20 @@ module.exports = function(grunt) {
         'frontoffice/bower_components/angular-route/angular-route.js',
         'frontoffice/bower_components/angular-animate/angular-animate.js',
         'frontoffice/bower_components/angular-touch/angular-touch.js',
-        'frontoffice/bower_components/angular-bootstrap/ui-bootstrap-tpls.js'
+        'frontoffice/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+        'frontoffice/bower_components/angular-sanitize/angular-sanitize.js',
+        'frontoffice/bower_components/rangy/rangy-core.js',
+        'frontoffice/bower_components/rangy/rangy-selectionsaverestore.js',
+        'frontoffice/bower_components/textAngular/dist/textAngular-sanitize.min.js',
+        'frontoffice/bower_components/textAngular/dist/textAngularSetup.js',
+        'frontoffice/bower_components/textAngular/dist/textAngular.js'
 
     ];
 
     var foBowerCss = [
         'frontoffice/bower_components/normalize-css',
-        'frontoffice/bower_components/bootstrap/dist/css/bootstrap.css'
+        'frontoffice/bower_components/bootstrap/dist/css/bootstrap.css',
+        'backoffice/bower_components/textAngular/dist/textAngular.css'
     ];
 
     grunt.initConfig({

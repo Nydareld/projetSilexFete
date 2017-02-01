@@ -4,7 +4,9 @@ var app = angular
     'ngRoute',
     'ngAnimate',
     'ngTouch',
-    'ui.bootstrap'
+    'ngSanitize',
+    'ui.bootstrap',
+    'textAngular'
 ]);
 
 app.controller('MainController', ['$scope', function($scope){

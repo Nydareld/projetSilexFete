@@ -15,8 +15,13 @@ app.config(function ($routeProvider) {
             "route" : "404"
         },{
             "name" : "Products",
-            "templateUrl" : "Modules/Products/Product.html",
+            "templateUrl" : "Modules/Products/Products.html",
             "route" : "produits",
+            "controller": "productsController"
+        },{
+            "name" : "Product",
+            "templateUrl" : "Modules/Product/Product.html",
+            "route" : "produit/:ID",
             "controller": "productController"
         }
 
@@ -37,6 +42,6 @@ app.config(function ($routeProvider) {
 });
 
 app.factory('app.config',[function(){
-    this.apiurl = "http://localhost/~lecomte/projetSilexFete";
+    this.apiurl = "http://fete.lc";
     return this;
 }]);

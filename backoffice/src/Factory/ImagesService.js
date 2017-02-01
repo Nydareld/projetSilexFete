@@ -1,8 +1,8 @@
-app.factory('app.images', ['$http', function($http) {
-
-    var categoriesURL = 'http://fete.lc/api/images/categories';
-    var categoryURL = 'http://fete.lc/api/images/category';
-    var postImageURL = 'http://fete.lc/api/images';
+app.factory('app.images', ['$http', "app.config", function($http,config) {
+    console.log(config.apiurl);
+    var categoriesURL = config.apiurl+'/api/images/categories';
+    var categoryURL = config.apiurl+'/api/images/category';
+    var postImageURL = config.apiurl+'/api/images';
 
     this.getCategoriesList = function(){
         return $http({

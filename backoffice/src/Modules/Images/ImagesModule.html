@@ -14,10 +14,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="widgets row">
-        <!-- nombre d'imgages -->
-        <!-- création category -->
+            <!-- nombre d'imgages -->
+            <!-- création category -->
 
-        <!-- liste catégory -->
+            <!-- liste catégory -->
             <div class="col-md-12">
                 <!-- Custom Tabs (Pulled to the right) -->
                 <div class="nav-tabs-custom">
@@ -28,16 +28,18 @@
                             </a>
                         </li>
                         <li class="pull-left header"><i class="fa fa-th"></i>Images</li>
+                        <li class="pull-left ">
+                            <a href="" ng-click="clearNewImage()" data-toggle="modal" data-target="#addImage" class="btn btn-primary pull-right">
+                                <i class="fa fa-plus"></i> Ajouter
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content">
-
                         <div ng-repeat="category in categories" ng-class="getClass(category.name)" class="tab-pane" id="tab-{{category.name}}">
                             <div class="box">
                                 <div class="box-header">
                                     <h2 class="box-title">{{category.name}}</h2>
-                                    <a href="" ng-click="clearNewImage()" data-toggle="modal" data-target="#addImage" class="btn btn-primary pull-right">
-                                        <i class="fa fa-plus"></i> Ajouter
-                                    </a>
+
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">

@@ -14,10 +14,10 @@ app.config(function ($routeProvider) {
             "templateUrl" : "Modules/Main/404.html",
             "route" : "404"
         },{
-            "name" : "TestModule",
-            "templateUrl" : "Modules/TestModule/TestModule.html",
-            "route" : "TestModule",
-            "controller": "testController"
+            "name" : "Products",
+            "templateUrl" : "Modules/Products/Product.html",
+            "route" : "produits",
+            "controller": "productController"
         }
 
     ];
@@ -35,3 +35,8 @@ app.config(function ($routeProvider) {
         redirectTo: '/404'
     });
 });
+
+app.factory('app.config',[function(){
+    this.apiurl = "http://localhost/~lecomte/projetSilexFete";
+    return this;
+}]);

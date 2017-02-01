@@ -30,7 +30,13 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
     me.refreshCategory = function(){
         return service.getCategoriesList().then(function(res){
             $scope.categories = res.data.data;
-            $scope.setCurrentCategory($scope.categories[0].name);
+            if ($scope.categories[0]) {
+                $scope.setCurrentCategory($scope.categories[0].name);
+            }
+            else {
+                $scope.setCurrentCategory("_");
+            }
+
         });
     }
     me.addImage = function(image){

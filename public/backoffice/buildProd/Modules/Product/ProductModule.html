@@ -62,7 +62,7 @@
                     <thead>
                         <tr>
                             <th>Nom</th>
-                            <th>Description</th>
+                            <th>Accroche</th>
                             <th>Date de création</th>
                             <th>Prix</th>
                             <th>Nombre de commentaires</th>
@@ -71,7 +71,7 @@
                     <tfoot>
                         <tr>
                             <th>Nom</th>
-                            <th>Description</th>
+                            <th>Accroche</th>
                             <th>Date de création</th>
                             <th>Prix</th>
                             <th>Nombre de commentaires</th>
@@ -81,7 +81,7 @@
                     <tbody>
                         <tr ng-repeat="product in products | orderBy:'id'">
                             <td><a ng-click="setCurrentProduct(product)" href='' data-toggle="modal" data-target="#ProductModal">{{product.name}}</a></td>
-                            <td>{{product.description}}</td>
+                            <td>{{product.caption}}</td>
                             <td>{{product.creationDate.date | dateToISO | date:'dd/MM/yyyy HH:mm:ss'}}</td>
                             <td>{{product.price}}</td>
                             <td>{{product.comments_count}}</td>
@@ -107,6 +107,11 @@
                             <div class="form-group">
                                 <label class="control-label" for="name">Nom</label>
                                 <input id="name" name="name" type="text" placeholder="barbecue, table ..." class="form-control" ng-model="modalProduct.name" required="">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="name">Accroche</label>
+                                <input id="name" name="name" type="text" placeholder="court texte d'accroche" class="form-control" ng-model="modalProduct.caption" required="">
                             </div>
 
                             <div class="form-group">

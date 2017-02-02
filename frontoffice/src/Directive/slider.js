@@ -1,6 +1,6 @@
 
 
-app.directive('slider', function ($timeout) {
+app.directive('slider', ['$timeout',function ($timeout) {
   return {
     restrict: 'AE',
 	replace: true,
@@ -49,7 +49,7 @@ app.directive('slider', function ($timeout) {
         templateUrl: 'Blocks/Directive/slider.html'
 
   }
-});
+}]);
 
 //
 // app.directive('slider', ['$timeout',function($timeout) {

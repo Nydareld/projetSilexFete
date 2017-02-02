@@ -40,14 +40,15 @@ module.exports = function(grunt) {
         'frontoffice/bower_components/rangy/rangy-selectionsaverestore.js',
         'frontoffice/bower_components/textAngular/dist/textAngular-sanitize.min.js',
         'frontoffice/bower_components/textAngular/dist/textAngularSetup.js',
-        'frontoffice/bower_components/textAngular/dist/textAngular.js'
-
+        'frontoffice/bower_components/textAngular/dist/textAngular.js',
+        'frontoffice/bower_components/toastr/toastr.js'
     ];
 
     var foBowerCss = [
         'frontoffice/bower_components/normalize-css',
         'frontoffice/bower_components/bootstrap/dist/css/bootstrap.css',
-        'backoffice/bower_components/textAngular/dist/textAngular.css'
+        'backoffice/bower_components/textAngular/dist/textAngular.css',
+        'frontoffice/bower_components/toastr/toastr.css'
     ];
 
     grunt.initConfig({

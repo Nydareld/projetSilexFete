@@ -35,6 +35,15 @@ $app["querryparam"] = function ($app) {
     return new TheoGuerin\Service\QuerryParam($app['request_stack']->getCurrentRequest());
 };
 
+// === service de vues ===
+$app["views"] = function ($app) {
+    return new TheoGuerin\Service\Views($app);
+};
+
+$app->error(function (\Exception $e, $code) use ($app) {
+    return $app['views']->exception($e->getMessage(),500);
+});
+
 // === DAOS ===
 require_once __DIR__.'/daos.php';
 
@@ -43,5 +52,5 @@ require_once __DIR__.'/daos.php';
 $app->after(function (Request $request, Response $response) {
     $response->headers->set('Access-Control-Allow-Origin', '*');
     $response->headers->set('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    $response->headers->set('Access-Control-Allow-Methods','GET, POST, PUT');
+    $response->headers->set('Access-Control-Allow-Methods','GET, POST, PUT, DELETE');
 });

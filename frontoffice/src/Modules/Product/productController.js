@@ -17,6 +17,7 @@ app.controller('productController', ['$scope','app.products','$routeParams',func
     $scope.saveComment = function(comment){
         service.comment($scope.productId,comment).then(function(res){
             me.loadProduct($scope.productId);
+            angular.element('#modalAddComment').modal('hide');
         });
     }
 

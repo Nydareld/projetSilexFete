@@ -14,26 +14,15 @@ class ProductController{
     public function getAllProductAction(Request $req, Application $app)
     {
         $products = $app["dao.product"]->getAll();
-        return $app->json( array(
-            'success' => true,
-            'count' => count($products),
-            'data' => $products
-        ),200);
+        return $app["views"]->success($products);
     }
 
     public function getProductAction(Request $req, Application $app, $id){
         $product = $app["dao.product"]->getOneById($id);
         if ($product === null){
-            return $app->json( array(
-                'success' => false,
-                'details' => 'product not found',
-            ),404);
+            return $app["views"]->error('product not found',404);
         }else{
-            return $app->json( array(
-                'success' => true,
-                'count' => count($product),
-                'data' => $product
-            ),200);
+            return $app["views"]->success($product);
         }
     }
 
@@ -42,10 +31,7 @@ class ProductController{
         $product = $app['hydrator']->hydrate($req->request->all(),'TheoGuerin\Model\Product');
 
         if(gettype($product) == 'string'){
-            return $app->json( array(
-                'success' => false,
-                'details' => $product
-            ),400);
+            return $app["views"]->error($product);
         }
         if($req->request->get('images') !== null){
             foreach ($req->request->get('images') as $imagePost) {
@@ -56,21 +42,13 @@ class ProductController{
             }
         }
         $app['dao.product']->save($product);
-
-        return $app->json( array(
-        'success' => true,
-        'count' => 1,
-        'data' => $product
-        ),201);
+        return $app["views"]->success($product,201);
     }
 
     public function putProductAction(Request $req, Application $app, $id){
         $product = $app["dao.product"]->getOneById($id);
         if ($product === null){
-            return $app->json( array(
-            'success' => false,
-            'details' => 'product not found',
-            ),404);
+            return $app["views"]->error('product not found',404);
         } else {
             $product = $app['hydrator']->update($req->request->all(),$product,'TheoGuerin\Model\Product');
             if($req->request->get('images') !== null){
@@ -83,36 +61,17 @@ class ProductController{
                 }
             }
             $app['dao.product']->save($product);
-            return $app->json( array(
-            'success' => true,
-            'count' => 1,
-            'data' => $product
-            ),200);
+            return $app["views"]->success($product);
         }
-
-        $app['dao.product']->save($product);
-
-        return $app->json( array(
-        'success' => true,
-        'count' => 1,
-        'data' => $product
-        ),201);
     }
 
     public function deleteProductAction(Request $req, Application $app,$id){
         $product = $app["dao.product"]->getOneById($id);
         if ($product === null){
-            return $app->json( array(
-            'success' => false,
-            'details' => 'product not found',
-            ),404);
+            return $app["views"]->error('product not found',404);
         } else {
             $app['dao.product']->remove($product);
-            return $app->json( array(
-            'success' => true,
-            'count' => 1,
-            'data' => $product
-            ),200);
+            return $app["views"]->success($product);
         }
     }
 
@@ -120,50 +79,33 @@ class ProductController{
     {
         $product = $app["dao.product"]->getOneById($id);
 
-
         if ($product === null){
-            return $app->json( array(
-            'success' => false,
-            'details' => 'product not found',
-            ),404);
+            return $app["views"]->error('product not found',404);
         }
 
         $comment = $app['hydrator']->hydrate($req->request->all(),'TheoGuerin\Model\Comment');
 
         if(gettype($comment) == 'string'){
-            return $app->json( array(
-            'success' => false,
-            'details' => $comment
-            ),400);
+            return $app["views"]->error($comment);
         }
 
         $comment->setProduct($product);
 
         $app['dao.comment']->save($comment);
-        return $app->json( array(
-        'success' => true,
-        'count' => 1,
-        'data' => $app["dao.product"]->getOneById($id)
-        ),201);
+        return $app["views"]->success($app["dao.product"]->getOneById($id),201);
     }
 
     public function postLocationAction(Request $req, Application $app,$id){
         $product = $app["dao.product"]->getOneById($id);
 
         if ($product === null){
-            return $app->json( array(
-            'success' => false,
-            'details' => 'product not found',
-            ),404);
+            return $app["views"]->error('product not found',404);
         }
 
         $location = $app['hydrator']->hydrate($req->request->all(),'TheoGuerin\Model\Location');
 
         if(gettype($location) == 'string'){
-            return $app->json( array(
-            'success' => false,
-            'details' => $location
-            ),400);
+            return $app["views"]->error($location);
         }
 
         $debutLocation = new Event();
@@ -183,11 +125,7 @@ class ProductController{
 
 
         $app['dao.location']->save($location);
-        return $app->json( array(
-        'success' => true,
-        'count' => 1,
-        'data' => $app["dao.product"]->getOneById($id)
-        ),201);
+        return $app["views"]->success($app["dao.product"]->getOneById($id),201);
     }
 
 }

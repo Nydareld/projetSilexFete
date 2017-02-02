@@ -20,3 +20,11 @@ $app["dao.location"] = function ($app) {
 $app["dao.image"] = function ($app) {
     return new TheoGuerin\DAO\ImageDao($app['orm.em'],$app["querryparam"]);
 };
+
+$app["dao.proposal"] = function ($app) {
+    return new TheoGuerin\DAO\ProposalDao($app['orm.em'],$app["querryparam"]);
+};
+
+$app["dao.contact"] = function ($app) {
+    return new TheoGuerin\DAO\ContactDao($app['orm.em'],$app["querryparam"]);
+};

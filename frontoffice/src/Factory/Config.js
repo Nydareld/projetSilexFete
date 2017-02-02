@@ -2,7 +2,7 @@ app.config(['$locationProvider', function($locationProvider) {
     $locationProvider.hashPrefix('');
 }]);
 
-app.config(function ($routeProvider) {
+app.config(['$routeProvider',function ($routeProvider) {
 
     var routes = [
         {
@@ -23,6 +23,16 @@ app.config(function ($routeProvider) {
             "templateUrl" : "Modules/Product/Product.html",
             "route" : "produit/:ID",
             "controller": "productController"
+        },{
+            "name" : "Services",
+            "templateUrl" : "Modules/Services/Services.html",
+            "route" : "services",
+            "controller": "servicesController"
+        },{
+            "name" : "Contact",
+            "templateUrl" : "Modules/Contact/Contact.html",
+            "route" : "contact",
+            "controller": "contactController"
         }
 
     ];
@@ -39,7 +49,7 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({
         redirectTo: '/404'
     });
-});
+}]);
 
 app.factory('app.config',[function(){
     this.apiurl = "http://fete.lc";

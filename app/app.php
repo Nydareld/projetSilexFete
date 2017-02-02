@@ -40,6 +40,10 @@ $app["views"] = function ($app) {
     return new TheoGuerin\Service\Views($app);
 };
 
+$app->error(function (\Exception $e, $code) use ($app) {
+    return $app['views']->exception($e->getMessage(),500);
+});
+
 // === DAOS ===
 require_once __DIR__.'/daos.php';
 

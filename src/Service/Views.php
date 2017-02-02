@@ -24,4 +24,11 @@ class Views{
             'details' => $message
         ),$statusCode);
     }
+
+    public function exception($message,$statusCode=500){
+        return $this->app->json( array(
+            'success' => false,
+            'exception' => $message
+        ),$statusCode);
+    }
 }

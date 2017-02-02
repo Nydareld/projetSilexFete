@@ -35,6 +35,11 @@ $app["querryparam"] = function ($app) {
     return new TheoGuerin\Service\QuerryParam($app['request_stack']->getCurrentRequest());
 };
 
+// === service de vues ===
+$app["views"] = function ($app) {
+    return new TheoGuerin\Service\Views($app);
+};
+
 // === DAOS ===
 require_once __DIR__.'/daos.php';
 

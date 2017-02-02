@@ -30,11 +30,11 @@ $app->get('/api/images/categories',"TheoGuerin\ApiController\ImageController::ge
 $app->get('/api/images/category/{catergoryName}',"TheoGuerin\ApiController\ImageController::getCategoryAction");
 
 // Proposal
-$app->get('/api/contact',"TheoGuerin\ApiController\ProposalController::getAllProposalAction");
-$app->post('/api/contact',"TheoGuerin\ApiController\ProposalController::postProposalAction");
-$app->delete('/api/contact/{id}',"TheoGuerin\ApiController\ProposalController::deleteProposalAction");
+$app->get('/api/proposal',"TheoGuerin\ApiController\ProposalController::getAllProposalAction");
+$app->post('/api/proposal',"TheoGuerin\ApiController\ProposalController::postProposalAction");
+$app->delete('/api/proposal/{id}',"TheoGuerin\ApiController\ProposalController::deleteProposalAction");
 
 // Contact
-$app->get('/api/proposal',"TheoGuerin\ApiController\ContactController::getAllContactAction");
-$app->post('/api/proposal',"TheoGuerin\ApiController\ContactController::postContactAction");
-$app->delete('/api/proposal/{id}',"TheoGuerin\ApiController\ContactController::deleteContactAction");
+$app->get('/api/contact',"TheoGuerin\ApiController\ContactController::getAllContactAction");
+$app->post('/api/contact',"TheoGuerin\ApiController\ContactController::postContactAction");
+$app->delete('/api/contact/{id}',"TheoGuerin\ApiController\ContactController::deleteContactAction");

@@ -2,7 +2,7 @@ app.config(['$locationProvider', function($locationProvider) {
     $locationProvider.hashPrefix('');
 }]);
 
-app.config(function ($routeProvider) {
+app.config(['$routeProvider',function ($routeProvider) {
 
     var routes = [
         {
@@ -49,7 +49,7 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({
         redirectTo: '/404'
     });
-});
+}]);
 
 app.factory('app.config',[function(){
     this.apiurl = "http://fete.lc";

@@ -26,8 +26,8 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div ng-repeat="proposal in proposals" class="alert alert-info alert-dismissible" id="alert{{proposal.id}}">
-                            <button ng-click="delProp(proposal.id)" type="button" class="close" data-dismiss="alert" data-target="alert{{proposal.id}}" aria-hidden="true">×</button>
+                        <div ng-repeat="proposal in proposals" class="alert alert-info alert-dismissible" id="alertProp{{proposal.id}}">
+                            <button ng-click="delProp(proposal.id)" type="button" class="close" data-dismiss="alert" data-target="alertProp{{proposal.id}}" aria-hidden="true">×</button>
                             <h4><i class="icon fa fa-info"></i>{{proposal.pseudo}} : {{proposal.productName}}</h4>
                             <h6>{{proposal.creationDate.date  | dateToISO | date:'dd/MM/yyyy HH:mm:ss' }}</h6>
                             <div ng-bind-html="proposal.comment"></div>
@@ -46,10 +46,11 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div class="callout callout-default">
-                            <h4>I am an info callout!</h4>
-
-                            <p>Follow the steps to continue to payment.</p>
+                        <div ng-repeat="contact in contacts" class="alert alert-warning alert-dismissible" id="alertContact{{proposal.id}}">
+                            <button ng-click="delContact(contact.id)" type="button" class="close" data-dismiss="alert" data-target="alertContact{{proposal.id}}" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-info"></i>{{contact.pseudo}} ( {{contact.email}} )</h4>
+                            <h6>{{contact.creationDate.date  | dateToISO | date:'dd/MM/yyyy HH:mm:ss' }}</h6>
+                            <div ng-bind-html="contact.comment"></div>
                         </div>
                     </div>
                 </div>

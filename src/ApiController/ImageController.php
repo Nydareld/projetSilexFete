@@ -25,21 +25,13 @@ class ImageController{
                 'path'=> 'http://'.$req->getHttpHost().'/api/images/category/'.$category['category']
             ));
         }
-        return $app->json( array(
-            'success' => true,
-            'count' => count($res),
-            'data' => $res
-        ),200);
+        return $app["views"]->success($res);
     }
 
     public function getCategoryAction(Request $req, Application $app, $catergoryName)
     {
         $images = $app['dao.image']->findBy(array( 'category' => $catergoryName ), array() );
-        return $app->json( array(
-            'success' => true,
-            'count' => count($images),
-            'data' => $images
-        ),200);
+        return $app["views"]->success($images);
     }
 
     public function postImageAction(Request $req, Application $app)
@@ -48,10 +40,7 @@ class ImageController{
         $image = $app['hydrator']->hydrate($req->request->all(),'TheoGuerin\Model\Image');
 
         if(gettype($image) == 'string'){
-            return $app->json( array(
-                'success' => false,
-                'details' => $image
-            ),400);
+            return $app["views"]->error($image);
         }
 
         $category = $image->getCategory();
@@ -71,18 +60,10 @@ class ImageController{
             );
             $image->setPath("http://".$req->getHttpHost()."/".$this->baseUri."/".$category."/".$fileName);
         }elseif ($image->getPath() == null) {
-            return $app->json( array(
-                'success' => false,
-                'details' => "missing file or external url"
-            ),400);
+            return $app["views"]->error("missing file or external url");
         }
         $app['dao.image']->save($image);
-
-        return $app->json( array(
-            'success' => true,
-            'count' => 1,
-            'data' => $image
-        ),201);
+        return $app["views"]->success($image,201);
     }
 
 }

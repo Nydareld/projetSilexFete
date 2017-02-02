@@ -28,6 +28,11 @@ app.config(function ($routeProvider) {
             "templateUrl" : "Modules/Services/Services.html",
             "route" : "services",
             "controller": "servicesController"
+        },{
+            "name" : "Contact",
+            "templateUrl" : "Modules/Contact/Contact.html",
+            "route" : "contact",
+            "controller": "contactController"
         }
 
     ];

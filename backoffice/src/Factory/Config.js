@@ -1,8 +1,8 @@
-app.config(['$locationProvider', function($locationProvider) {
-    $locationProvider.hashPrefix('');
+app.config(["$locationProvider", function($locationProvider) {
+    $locationProvider.hashPrefix("");
 }]);
 
-app.config(['$routeProvider',function ($routeProvider) {
+app.config(["$routeProvider",function ($routeProvider) {
 
     var routes = [
         {
@@ -30,20 +30,20 @@ app.config(['$routeProvider',function ($routeProvider) {
     ];
 
     for (var i = 0; i < routes.length; i++) {
-        $routeProvider.when('/'+route[i].route, {
+        $routeProvider.when("/"+route[i].route, {
             templateUrl: route[i].templateUrl,
             controller: route[i].controller,
             controllerAs: route[i].controller
         });
     }
     $routeProvider.otherwise({
-        redirectTo: '/404'
+        redirectTo: "/404"
     });
 }]);
 
 
 
-app.factory('app.config',[function(){
+app.factory("app.config",[function(){
     this.apiurl = "http://fete.lc";
     return this;
 }]);

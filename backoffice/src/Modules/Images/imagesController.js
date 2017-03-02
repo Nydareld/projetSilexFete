@@ -78,7 +78,6 @@ app.controller("imagesController", ["$scope","app.images","$filter",function($sc
     };
     $scope.setCurrentCategory = function(categoryName){
         $scope.current = categoryName;
-        let catName = categoryName;
         if(!$scope.currentData){
             $scope.currentData = {};
         }

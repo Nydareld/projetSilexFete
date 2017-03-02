@@ -1,4 +1,4 @@
-app.controller('productController', ['$scope','app.products','$filter',function($scope,service,$filter){
+app.controller("productController", ["$scope","app.products","$filter",function($scope,service,$filter){
 
     var me = this;
 
@@ -10,7 +10,7 @@ app.controller('productController', ['$scope','app.products','$filter',function(
         service.cget().then(function(res){
             $scope.products = res.data.data;
         });
-    }
+    };
 
     /**
      * Rafraichie le nombre de comentaires
@@ -23,7 +23,7 @@ app.controller('productController', ['$scope','app.products','$filter',function(
                 $scope.comments += $scope.products[i].comments_count;
             }
         }
-    }
+    };
 
     /**
      * Ajout une produit ou en met a jours un
@@ -31,12 +31,12 @@ app.controller('productController', ['$scope','app.products','$filter',function(
      * @param  product   product le produit a ajouter
      */
     me.addProduct = function(product){
-        var oldProduct = $filter('getById')($scope.products,product.id);
+        var oldProduct = $filter("getById")($scope.products,product.id);
         if(oldProduct){
             $scope.products.splice($scope.products.indexOf(oldProduct),1);
         }
         $scope.products.push(product);
-    }
+    };
 
     /**
      * Reinitialise le produit de la modal
@@ -50,7 +50,7 @@ app.controller('productController', ['$scope','app.products','$filter',function(
             price :null,
             images : []
         };
-    }
+    };
 
     /**
      * Attribue le produit de la modal
@@ -59,7 +59,7 @@ app.controller('productController', ['$scope','app.products','$filter',function(
      */
     $scope.setCurrentProduct = function(product){
         $scope.modalProduct = angular.copy(product);
-    }
+    };
 
     /**
      * Sauvegarde un produit
@@ -69,9 +69,9 @@ app.controller('productController', ['$scope','app.products','$filter',function(
     $scope.saveProduct = function(product){
         service.save(product).then(function(res){
             me.addProduct(res.data.data);
-            angular.element('#ProductModal').modal('hide');
+            angular.element("#ProductModal").modal("hide");
         });
-    }
+    };
 
     $scope.addImageToProduct = function(image){
         if($scope.modalProduct){
@@ -86,15 +86,14 @@ app.controller('productController', ['$scope','app.products','$filter',function(
                 image.selected = true;
             }
         }
-    }
+    };
 
     $scope.addImages = function(product){
-        return $scope.$broadcast('selectImages',product);
-    }
+        return $scope.$broadcast("selectImages",product);
+    };
 
-    $scope.$watch('products', function() { me.reloadComentsCount() }, true);
+    $scope.$watch("products", function() { me.reloadComentsCount(); }, true);
 
     me.reloadProducts();
-
     return me;
 }]);

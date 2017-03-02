@@ -1,4 +1,4 @@
-app.controller('imagesController', ['$scope','app.images','$filter',function($scope,service,$filter){
+app.controller("imagesController", ["$scope","app.images","$filter",function($scope,service,$filter){
 
     var me = this;
 
@@ -22,7 +22,7 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
             name : "Date de création",
             value : "creationDate",
             render : function(value){
-                return $filter('date')($filter('dateToISO')(value.date), 'dd/MM/yyyy HH:mm:ss',value.timezone);
+                return $filter("date")($filter("dateToISO")(value.date), "dd/MM/yyyy HH:mm:ss",value.timezone);
             }
         }
     ];
@@ -38,16 +38,16 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
             }
 
         });
-    }
+    };
     me.addImage = function(image){
         me.refreshCategory().then(function(){
             $scope.setCurrentCategory(image.category);
         });
-    }
+    };
 
     $scope.setNewImageCategory = function(category){
         $scope.newImage.category = category;
-    }
+    };
 
     $scope.clearNewImage = function(){
         $scope.imageToSet = true;
@@ -60,24 +60,25 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
             image: {
                 name : null
             }
-        }
-    }
+        };
+    };
     $scope.pathChange = function(path){
-        if(path != "" || path != null){
+        if(path !== "" || path !== null){
             $scope.imageToSet = false;
-        }else if($scope.newImage.image.name == "" || $scope.newImage.image.name == null ){
+        }else if($scope.newImage.image.name === "" || $scope.newImage.image.name === null ){
             $scope.imageToSet = true;
         }
-    }
+    };
     $scope.uploadChange = function(name){
-        if(name != "" || name != null){
+        if(name !== "" || name !== null){
             $scope.imageToSet = false;
-        }else if($scope.newImage.path == "" || $scope.newImage.path == null ){
+        }else if($scope.newImage.path === "" || $scope.newImage.path === null ){
             $scope.imageToSet = true;
         }
-    }
+    };
     $scope.setCurrentCategory = function(categoryName){
         $scope.current = categoryName;
+        let catName = categoryName;
         if(!$scope.currentData){
             $scope.currentData = {};
         }
@@ -85,7 +86,7 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
             $scope.currentData[categoryName] = res.data.data;
         });
         me.verifySelected($scope.currentData[categoryName]);
-    }
+    };
     me.verifySelected = function(images){
         if(me.product){
             images.forEach(function(image){
@@ -97,10 +98,10 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
                 });
             });
         }
-    }
+    };
     $scope.setCurrentProduct = function(image){
         $scope.currentImage = image;
-    }
+    };
 
     $scope.getClass = function(categoryName){
         if($scope.current == categoryName){
@@ -108,16 +109,16 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
         }else {
             return "";
         }
-    }
+    };
 
     $scope.addImage = function(newImage){
         service.save(newImage).then(function(res){
             me.addImage(res.data.data);
-            angular.element('#addImage').modal('hide');
+            angular.element("#addImage").modal("hide");
         });
-    }
+    };
 
-    $scope.$on('selectImages',function(e,product) {
+    $scope.$on("selectImages",function(e,product) {
         me.product = product;
         me.verifySelected($scope.currentData[$scope.current]);
     });

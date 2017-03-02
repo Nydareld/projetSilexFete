@@ -1,3 +1,3 @@
-app.controller('Block.Footer.Controller', ['$scope',function(scope){
+app.controller("Block.Footer.Controller", ["$scope",function(scope){
     $.AdminLTE.layout.fix();
 }]);

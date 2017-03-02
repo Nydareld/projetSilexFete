@@ -81,11 +81,9 @@ app.controller('imagesController', ['$scope','app.images','$filter',function($sc
         if(!$scope.currentData){
             $scope.currentData = {};
         }
-        if(!$scope.currentData[categoryName]){
-            service.getCategory(categoryName).then(function(res){
-                $scope.currentData[categoryName] = res.data.data;
-            });
-        }
+        service.getCategory(categoryName).then(function(res){
+            $scope.currentData[categoryName] = res.data.data;
+        });
         me.verifySelected($scope.currentData[categoryName]);
     }
     me.verifySelected = function(images){

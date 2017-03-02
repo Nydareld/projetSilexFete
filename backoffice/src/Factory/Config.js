@@ -30,11 +30,10 @@ app.config(['$routeProvider',function ($routeProvider) {
     ];
 
     for (var i = 0; i < routes.length; i++) {
-        var route = routes[i];
-        $routeProvider.when('/'+route.route, {
-            templateUrl: route.templateUrl,
-            controller: route.controller,
-            controllerAs: route.controller
+        $routeProvider.when('/'+route[i].route, {
+            templateUrl: route[i].templateUrl,
+            controller: route[i].controller,
+            controllerAs: route[i].controller
         });
     }
     $routeProvider.otherwise({

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <form>
+      <textarea id="ta1" name="ta1" rows="8" cols="80" >Violeur
+        Suceur
+        Sodomite
+        Branleur
+        Demonteur
+        Dominateur
+        Enfourneur"</textarea>
+      <textarea id="ta2" name="ta2" rows="8" cols="80" >de chicane
+        de pot d'huile
+        de moteur
+        de radiateur
+        d’amortisseur
+        de roue
+        de joint de culasse
+        de ceinture
+        d’essuie-glaces"</textarea>
+      <textarea id="ta3" name="ta3" rows="8" cols="80" >gras
+        humide
+        brut
+        luisant"</textarea>
+    </form>
+    <button id="btn" type="button" name="button">Générer</button>
+    <p id="res">
+
+    </p>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+      crossorigin="anonymous"></script>
+
+    <script>
+
+    function allPossibleCases(arr) {
+      if (arr.length === 0) {
+        return [];
+      }
+      else if (arr.length ===1){
+        return arr[0];
+      }
+      else {
+        var result = [];
+        var allCasesOfRest = allPossibleCases(arr.slice(1));  // recur with the rest of array
+        for (var c in allCasesOfRest) {
+          for (var i = 0; i < arr[0].length; i++) {
+            result.push(arr[0][i] +" " + allCasesOfRest[c]);
+          }
+        }
+        return result;
+      }
+
+    }
+
+    function gen(){
+      console.log("toto");
+      var arrays = [
+        $("#ta1").val().split('\n'),
+        $("#ta2").val().split('\n'),
+        $("#ta3").val().split('\n')
+      ]
+      var r=allPossibleCases(arrays);
+      console.log(r);
+      $("#res").html(r.join('<br>'));
+    }
+
+    $("#btn").click(gen);
+
+
+    </script>
+  </body>
+</html>
